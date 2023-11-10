@@ -1,5 +1,7 @@
 package christmas;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;

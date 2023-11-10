@@ -23,4 +23,8 @@ public enum Menu {
         this.name = name;
         this.price = price;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }
