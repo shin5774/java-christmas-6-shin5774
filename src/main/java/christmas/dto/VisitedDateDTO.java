@@ -1,5 +1,6 @@
 package christmas.dto;
 
+import christmas.VisitedDate;
 import java.util.regex.Pattern;
 
 public class VisitedDateDTO {
@@ -19,5 +20,13 @@ public class VisitedDateDTO {
 
     private boolean isNotNumber(String requestDate) {
         return !NUMBER.matcher(requestDate).matches();
+    }
+
+    public VisitedDate toVisitedDate() {
+        return VisitedDate.of(toInt(requestDate));
+    }
+
+    private int toInt(String requestDate) {
+        return Integer.parseInt(requestDate);
     }
 }
