@@ -8,7 +8,7 @@
     - [ ] 입력값에 대한 검증을 한다.
         - [x] [Exception] 숫자가 아닌 값을 입력받는다.
         - [x] [Exception] 1 이상 31이하의 숫자가 아닌 값을 입력받는다.
-        - [ ] [Exception Message] Exception 발생시 해당 에러 메시지를 보여준다.
+        - [x] [Exception Message] Exception 발생시 해당 에러 메시지를 보여준다.
           ```
           [ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요
           ```

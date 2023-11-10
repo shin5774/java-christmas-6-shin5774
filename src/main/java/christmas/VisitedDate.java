@@ -1,5 +1,7 @@
 package christmas;
 
+import christmas.exception.VisitedDateException;
+
 public class VisitedDate {
     private static final int START_DATE = 1;
     private static final int END_DATE = 31;
@@ -16,7 +18,7 @@ public class VisitedDate {
 
     private void validate(int date) {
         if (date < START_DATE || date > END_DATE) {
-            throw new IllegalArgumentException();
+            throw VisitedDateException.from("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 }

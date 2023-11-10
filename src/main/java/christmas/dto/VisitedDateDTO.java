@@ -1,6 +1,7 @@
 package christmas.dto;
 
 import christmas.VisitedDate;
+import christmas.exception.VisitedDateException;
 import java.util.regex.Pattern;
 
 public class VisitedDateDTO {
@@ -14,7 +15,7 @@ public class VisitedDateDTO {
 
     private void validate(String requestDate) {
         if (isNotNumber(requestDate)) {
-            throw new IllegalArgumentException();
+            throw VisitedDateException.from("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
