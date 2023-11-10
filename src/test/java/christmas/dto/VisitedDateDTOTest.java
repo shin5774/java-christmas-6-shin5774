@@ -1,6 +1,7 @@
 package christmas.dto;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -31,6 +32,16 @@ public class VisitedDateDTOTest {
                     }
             ).isInstanceOf(IllegalArgumentException.class);
         }
+    }
+
+    @DisplayName("방문 날짜 입력 기능의 정상동작")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "15", "23", "31"})
+    void 입력_정상동작(String request) {
+        assertDoesNotThrow(() -> {
+            VisitedDateDTO visitedDateDTO = new VisitedDateDTO(request);
+            visitedDateDTO.toVisitedDate();
+        });
     }
 
 }
