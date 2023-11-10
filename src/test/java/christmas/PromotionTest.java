@@ -18,6 +18,14 @@ public class PromotionTest {
         promotions.forEach(promotion -> assertThat(expected.contains(promotion)).isTrue());
     }
 
+    @DisplayName("할인 금액을 반환한다.")
+    @MethodSource("promotionAndDayAndDiscountAmount")
+    @ParameterizedTest(name = "프로모션 : {0},날짜 : {1},메뉴 수 : {2},예상 할인금액: {3}")
+    void 할인_금액_반환(Promotion promotion, int day, int menuAmount, int discountAmount) {
+        assertThat(promotion.getDiscountAmount(day, menuAmount)).isEqualTo(discountAmount);
+    }
+
+
     static Stream<Arguments> dayAndPromotions() {
         return Stream.of(
                 Arguments.arguments(1, List.of(Promotion.WEEKEND, Promotion.CHRISTMAS_D_DAY)),
@@ -27,6 +35,15 @@ public class PromotionTest {
                 Arguments.arguments(26, List.of(Promotion.WEEKDAY)),
                 Arguments.arguments(29, List.of(Promotion.WEEKEND)),
                 Arguments.arguments(31, List.of(Promotion.WEEKDAY, Promotion.SPECIAL))
+        );
+    }
+
+    static Stream<Arguments> promotionAndDayAndDiscountAmount() {
+        return Stream.of(
+                Arguments.arguments(Promotion.CHRISTMAS_D_DAY, 3, 2, 1200),
+                Arguments.arguments(Promotion.WEEKDAY, 4, 3, 6069),
+                Arguments.arguments(Promotion.WEEKEND, 6, 2, 4046),
+                Arguments.arguments(Promotion.SPECIAL, 3, 5, 1000)
         );
     }
 }
