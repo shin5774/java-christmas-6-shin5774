@@ -20,6 +20,17 @@ public class VisitedDateDTOTest {
                     }
             ).isInstanceOf(IllegalArgumentException.class);
         }
+
+        @DisplayName("1이상 31이하의 숫자 입력값")
+        @ParameterizedTest
+        @ValueSource(strings = {"0", "-5", "35"})
+        void 범위초과입력(String request) {
+            assertThatThrownBy(() -> {
+                        VisitedDateDTO visitedDateDTO = new VisitedDateDTO(request);
+                        visitedDateDTO.toVisitedDate();
+                    }
+            ).isInstanceOf(IllegalArgumentException.class);
+        }
     }
 
 }
