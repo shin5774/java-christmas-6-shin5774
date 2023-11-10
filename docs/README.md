@@ -29,7 +29,7 @@
             - [x] [Exception] 1보다 작은 숫자를 입력받는다.
         - [x] [Exception] 메뉴가 중복되게 입력을 받는다.
         - [x] [Exception] 전체 메뉴의 개수의 합이 20개를 초과하게 입력받는다.
-        - [ ] [Exception Message] Exception 발생시 해당 에러 메시지를 보여준다.
+        - [x] [Exception Message] Exception 발생시 해당 에러 메시지를 보여준다.
           ```
           [ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.
           ```

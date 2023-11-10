@@ -1,5 +1,6 @@
 package christmas;
 
+import christmas.exception.MenuException;
 import java.util.List;
 
 public class MenusValidator {
@@ -17,7 +18,7 @@ public class MenusValidator {
                 .distinct().count();
 
         if (menus.size() != uniqueCount) {
-            throw new IllegalArgumentException();
+            throw MenuException.from("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
@@ -28,7 +29,7 @@ public class MenusValidator {
                 .sum();
 
         if (totalAmount > AMOUNT_UPPER_LIMIT) {
-            throw new IllegalArgumentException();
+            throw MenuException.from("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 }
