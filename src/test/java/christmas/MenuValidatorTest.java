@@ -9,6 +9,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("메뉴에 대한 검증 기능")
 public class MenuValidatorTest {
+    @DisplayName("메뉴판에 없는 메뉴를 입력받는 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"a-1", "없음-2", "돼지국밥-15"})
+    void 없는메뉴(String requestMenu) {
+        MenuAndAmount menuAndAmount = Parser.parseMenuAndAmount(requestMenu);
+        assertThatThrownBy(() -> MenuValidator.validate(menuAndAmount)).isInstanceOf(
+                IllegalArgumentException.class);
+    }
+
 
     @Nested
     @DisplayName("메뉴 수량의 예외처리")
