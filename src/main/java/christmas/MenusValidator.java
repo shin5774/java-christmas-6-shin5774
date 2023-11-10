@@ -7,6 +7,7 @@ public class MenusValidator {
 
     public static void validate(List<MenuAndAmount> menus) {
         duplicateMenuValidate(menus);
+        menus.forEach(MenuValidator::validate);
         exceededLimitValidate(menus);
     }
 
