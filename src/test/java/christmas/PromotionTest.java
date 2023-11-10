@@ -14,4 +14,12 @@ public class PromotionTest {
         Promotion promotion = new Promotion();
         assertThat(promotion.isChristMasDiscount(day)).isEqualTo(expected);
     }
+
+    @DisplayName("평일할인 적용 날짜인지 확인")
+    @ParameterizedTest
+    @CsvSource(value = {"1:false", "13:true", "25:true", "26:true", "30:false"}, delimiter = ':')
+    void 평일할인_적용여부(int day, boolean expected) {
+        Promotion promotion = new Promotion();
+        assertThat(promotion.isWeekDayDiscount(day)).isEqualTo(expected);
+    }
 }
