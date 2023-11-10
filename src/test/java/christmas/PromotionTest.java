@@ -2,32 +2,31 @@ package christmas;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class PromotionTest {
-    @DisplayName("크리스마스 디데이 할인 적용 날짜인지 확인")
-    @ParameterizedTest
-    @CsvSource(value = {"1:true", "13:true", "25:true", "26:false", "31:false"}, delimiter = ':')
-    void 크리스마스_특별할인_적용여부(int day, boolean expected) {
-        Promotion promotion = new Promotion();
-        assertThat(promotion.isChristMasDiscount(day)).isEqualTo(expected);
+    @DisplayName("날짜별 프로모션 적용목록둘울 반환한다.")
+    @MethodSource("dayAndPromotions")
+    @ParameterizedTest(name = "날짜 : {0}일, 프로모션 적용목록: {1}")
+    void 프로모션_적용_목록확인(int day, List<Promotion> expected) {
+        List<Promotion> promotions = Promotion.findPromotions(day);
+        promotions.forEach(promotion -> assertThat(expected.contains(promotion)).isTrue());
     }
 
-    @DisplayName("평일할인 적용 날짜인지 확인")
-    @ParameterizedTest
-    @CsvSource(value = {"1:false", "13:true", "25:true", "26:true", "30:false"}, delimiter = ':')
-    void 평일할인_적용여부(int day, boolean expected) {
-        Promotion promotion = new Promotion();
-        assertThat(promotion.isWeekDayDiscount(day)).isEqualTo(expected);
-    }
-
-    @DisplayName("특별할인 적용 날짜인지 확인")
-    @ParameterizedTest
-    @CsvSource(value = {"1:false", "3:true", "25:true", "26:false", "30:false"}, delimiter = ':')
-    void 특별할인_적용여부(int day, boolean expected) {
-        Promotion promotion = new Promotion();
-        assertThat(promotion.isSpecialDiscount(day)).isEqualTo(expected);
+    static Stream<Arguments> dayAndPromotions() {
+        return Stream.of(
+                Arguments.arguments(1, List.of(Promotion.WEEKEND, Promotion.CHRISTMAS_D_DAY)),
+                Arguments.arguments(3, List.of(Promotion.WEEKDAY, Promotion.CHRISTMAS_D_DAY, Promotion.SPECIAL)),
+                Arguments.arguments(7, List.of(Promotion.WEEKDAY, Promotion.CHRISTMAS_D_DAY)),
+                Arguments.arguments(25, List.of(Promotion.WEEKDAY, Promotion.CHRISTMAS_D_DAY, Promotion.SPECIAL)),
+                Arguments.arguments(26, List.of(Promotion.WEEKDAY)),
+                Arguments.arguments(29, List.of(Promotion.WEEKEND)),
+                Arguments.arguments(31, List.of(Promotion.WEEKDAY, Promotion.SPECIAL))
+        );
     }
 }
