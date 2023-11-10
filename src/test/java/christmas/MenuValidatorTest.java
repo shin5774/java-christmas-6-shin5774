@@ -1,6 +1,7 @@
 package christmas;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -39,5 +40,15 @@ public class MenuValidatorTest {
             assertThatThrownBy(() -> MenuValidator.validate(menuAndAmount)).isInstanceOf(
                     IllegalArgumentException.class);
         }
+    }
+
+    @DisplayName("메뉴의 정상입력")
+    @ParameterizedTest
+    @ValueSource(strings = {"아이스크림-2", "샴페인-3", "양송이수프-1"})
+    void 메뉴_정상_입력(String requestMenu) {
+        MenuAndAmount menuAndAmount = Parser.parseMenuAndAmount(requestMenu);
+        assertDoesNotThrow(() -> {
+            MenuValidator.validate(menuAndAmount);
+        });
     }
 }
