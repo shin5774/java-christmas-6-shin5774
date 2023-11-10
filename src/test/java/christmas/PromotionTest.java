@@ -2,7 +2,10 @@ package christmas;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,6 +28,16 @@ public class PromotionTest {
         assertThat(promotion.getDiscountAmount(day, menuAmount)).isEqualTo(discountAmount);
     }
 
+    @DisplayName("프로모션 할인대상에 해당되는 메뉴들의 개수합을 반환한다.")
+    @MethodSource("promotionAndMenuAmount")
+    @ParameterizedTest(name = "프로모션 : {0},메뉴 수 : {1}")
+    void 프로모션_대상_메뉴수_반환(Promotion promotion, int menuAmount) {
+        //given
+        Map<Menu, Integer> order = new EnumMap<>(Menu.class);
+        Arrays.stream(Menu.values()).forEach(menu -> order.put(menu, 1));
+
+        assertThat(promotion.getDiscountMenuAmount(order)).isEqualTo(menuAmount);
+    }
 
     static Stream<Arguments> dayAndPromotions() {
         return Stream.of(
@@ -44,6 +57,15 @@ public class PromotionTest {
                 Arguments.arguments(Promotion.WEEKDAY, 4, 3, 6069),
                 Arguments.arguments(Promotion.WEEKEND, 6, 2, 4046),
                 Arguments.arguments(Promotion.SPECIAL, 3, 5, 1000)
+        );
+    }
+
+    static Stream<Arguments> promotionAndMenuAmount() {
+        return Stream.of(
+                Arguments.arguments(Promotion.CHRISTMAS_D_DAY, 1),
+                Arguments.arguments(Promotion.WEEKDAY, 2),
+                Arguments.arguments(Promotion.WEEKEND, 4),
+                Arguments.arguments(Promotion.SPECIAL, 1)
         );
     }
 }
