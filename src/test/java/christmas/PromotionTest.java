@@ -21,22 +21,14 @@ public class PromotionTest {
         promotions.forEach(promotion -> assertThat(expected.contains(promotion)).isTrue());
     }
 
-    @DisplayName("할인 금액을 반환한다.")
+    @DisplayName("프로모션별 할인 금액을 반환한다.")
     @MethodSource("promotionAndDayAndDiscountAmount")
-    @ParameterizedTest(name = "프로모션 : {0},날짜 : {1},메뉴 수 : {2},예상 할인금액: {3}")
-    void 할인_금액_반환(Promotion promotion, int day, int menuAmount, int discountAmount) {
-        assertThat(promotion.getDiscountAmount(day, menuAmount)).isEqualTo(discountAmount);
-    }
-
-    @DisplayName("프로모션 할인대상에 해당되는 메뉴들의 개수합을 반환한다.")
-    @MethodSource("promotionAndMenuAmount")
-    @ParameterizedTest(name = "프로모션 : {0},메뉴 수 : {1}")
-    void 프로모션_대상_메뉴수_반환(Promotion promotion, int menuAmount) {
-        //given
+    @ParameterizedTest(name = "프로모션 : {0}, 날짜 : {1}, 예상 할인금액: {2}")
+    void 할인_금액_반환(Promotion promotion, int day, int discountAmount) {
         Map<Menu, Integer> order = new EnumMap<>(Menu.class);
         Arrays.stream(Menu.values()).forEach(menu -> order.put(menu, 1));
 
-        assertThat(promotion.getDiscountMenuAmount(order)).isEqualTo(menuAmount);
+        assertThat(promotion.getDiscountAmount(day, order)).isEqualTo(discountAmount);
     }
 
     static Stream<Arguments> dayAndPromotions() {
@@ -53,19 +45,10 @@ public class PromotionTest {
 
     static Stream<Arguments> promotionAndDayAndDiscountAmount() {
         return Stream.of(
-                Arguments.arguments(Promotion.CHRISTMAS_D_DAY, 3, 2, 1200),
-                Arguments.arguments(Promotion.WEEKDAY, 4, 3, 6069),
-                Arguments.arguments(Promotion.WEEKEND, 6, 2, 4046),
-                Arguments.arguments(Promotion.SPECIAL, 3, 5, 1000)
-        );
-    }
-
-    static Stream<Arguments> promotionAndMenuAmount() {
-        return Stream.of(
-                Arguments.arguments(Promotion.CHRISTMAS_D_DAY, 1),
-                Arguments.arguments(Promotion.WEEKDAY, 2),
-                Arguments.arguments(Promotion.WEEKEND, 4),
-                Arguments.arguments(Promotion.SPECIAL, 1)
+                Arguments.arguments(Promotion.CHRISTMAS_D_DAY, 3, 1200),
+                Arguments.arguments(Promotion.WEEKDAY, 4, 4046),
+                Arguments.arguments(Promotion.WEEKEND, 6, 8092),
+                Arguments.arguments(Promotion.SPECIAL, 3, 1000)
         );
     }
 }
