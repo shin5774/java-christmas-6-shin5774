@@ -35,6 +35,10 @@ public enum Promotion {
     }
 
     private int getDiscountMenuAmount(Map<Menu, Integer> order) {
+        if (discountMenuGroup == MenuGroup.NONE) {
+            return 1;
+        }
+
         return (int) order.keySet().stream()
                 .filter(menu -> MenuGroup.findGroup(menu) == discountMenuGroup)
                 .count();
