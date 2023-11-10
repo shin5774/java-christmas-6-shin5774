@@ -21,5 +21,14 @@ public class MenuValidatorTest {
             assertThatThrownBy(() -> MenuValidator.validate(menuAndAmount)).isInstanceOf(
                     IllegalArgumentException.class);
         }
+
+        @DisplayName("1 미만의 수량입력값")
+        @ParameterizedTest
+        @ValueSource(strings = {"a-0", "a--3"})
+        void 주문최소량_미만(String requestMenu) {
+            MenuAndAmount menuAndAmount = Parser.parseMenuAndAmount(requestMenu);
+            assertThatThrownBy(() -> MenuValidator.validate(menuAndAmount)).isInstanceOf(
+                    IllegalArgumentException.class);
+        }
     }
 }
