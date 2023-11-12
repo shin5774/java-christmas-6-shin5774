@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class BenefitsTest {
-    private static final Benefits benefits = null;
+    private static Benefits benefits;
 
     @BeforeAll
     static void 초기설정() {
@@ -19,7 +19,7 @@ public class BenefitsTest {
         benefitsData.put("주말 할인", 3);
         benefitsData.put("특별 할인", 4);
         benefitsData.put("증정 이벤트", 5);
-        Benefits result = Benefits.from(benefitsData);
+        benefits = Benefits.from(benefitsData);
     }
 
     @DisplayName("총 혜택금액 반환 기능")
@@ -33,8 +33,7 @@ public class BenefitsTest {
     void 예상_결제액_정상값() {
         //given
         int chargeAmont = 25;
-        assertThat(benefits.getExpectedPayAmount(chargeAmont)).isEqualTo(10);
+
+        assertThat(benefits.getExpectedPayAmount(chargeAmont)).isEqualTo(15);
     }
-
-
 }
