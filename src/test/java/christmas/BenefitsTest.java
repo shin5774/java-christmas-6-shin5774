@@ -36,4 +36,13 @@ public class BenefitsTest {
 
         assertThat(benefits.getExpectedPayAmount(chargeAmont)).isEqualTo(15);
     }
+
+    @DisplayName("할인후 예상 결제 금액 반환기능_음수 처리")
+    @Test
+    void 예상_결제액_음수처리() {
+        //given
+        int chargeAmont = 5;
+
+        assertThat(benefits.getExpectedPayAmount(chargeAmont)).isEqualTo(0);
+    }
 }
