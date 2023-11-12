@@ -1,5 +1,6 @@
 package christmas;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Orders {
@@ -17,5 +18,14 @@ public class Orders {
         return orders.keySet().stream()
                 .mapToInt(menu -> menu.getPrice() * orders.get(menu))
                 .sum();
+    }
+
+    public Map<String, Integer> getOrderDetails() {
+        Map<String, Integer> orderDetails = new HashMap<>();
+
+        orders.keySet()
+                .forEach(menu -> orderDetails.put(menu.getName(), orders.get(menu)));
+
+        return orderDetails;
     }
 }
