@@ -27,7 +27,7 @@ public class Benefits {
             totalBenefitAmount -= benefits.get(EXCEPT_EVENT);
         }
 
-        return setNegativeAmountToZero(chargeAmount - totalBenefitAmount);
+        return setNegativeAmountToZero(chargeAmount + totalBenefitAmount);
     }
 
     private int setNegativeAmountToZero(int paymentAmount) {

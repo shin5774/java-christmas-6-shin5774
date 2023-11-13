@@ -45,10 +45,10 @@ public class PromotionTest {
 
     static Stream<Arguments> promotionAndDayAndDiscountAmount() {
         return Stream.of(
-                Arguments.arguments(Promotion.CHRISTMAS_D_DAY, 3, 1200),
-                Arguments.arguments(Promotion.WEEKDAY, 4, 4046),
-                Arguments.arguments(Promotion.WEEKEND, 6, 8092),
-                Arguments.arguments(Promotion.SPECIAL, 3, 1000)
+                Arguments.arguments(Promotion.CHRISTMAS_D_DAY, 3, -1200),
+                Arguments.arguments(Promotion.WEEKDAY, 4, -4046),
+                Arguments.arguments(Promotion.WEEKEND, 6, -8092),
+                Arguments.arguments(Promotion.SPECIAL, 3, -1000)
         );
     }
 }

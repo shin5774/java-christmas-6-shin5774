@@ -7,18 +7,19 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 public enum Promotion {
-    CHRISTMAS_D_DAY(day -> 1000 + (day - 1) * 100, day -> day <= 25, MenuGroup.NONE),
-    WEEKDAY(always -> 2023, day -> !(day % 7 == 1 || day % 7 == 2), MenuGroup.DESSERT),
-    WEEKEND(always -> 2023, day -> day % 7 == 1 || day % 7 == 2, MenuGroup.MAIN),
-    SPECIAL(always -> 1000, day -> List.of(3, 10, 17, 24, 25, 31).contains(day), MenuGroup.NONE);
+    CHRISTMAS_D_DAY("크리스마스 디데이 할인", day -> -(1000 + (day - 1) * 100), day -> day <= 25, MenuGroup.NONE),
+    WEEKDAY("평일 할인", always -> -2023, day -> !(day % 7 == 1 || day % 7 == 2), MenuGroup.DESSERT),
+    WEEKEND("주말 할인", always -> -2023, day -> day % 7 == 1 || day % 7 == 2, MenuGroup.MAIN),
+    SPECIAL("특별 할인", always -> -1000, day -> List.of(3, 10, 17, 24, 25, 31).contains(day), MenuGroup.NONE);
 
-
+    private final String title;
     private final UnaryOperator<Integer> discountAmount;
     private final Predicate<Integer> applicable;
     private final MenuGroup discountMenuGroup;
 
-    Promotion(UnaryOperator<Integer> discountAmount, Predicate<Integer> applicable,
+    Promotion(String title, UnaryOperator<Integer> discountAmount, Predicate<Integer> applicable,
               MenuGroup discountMenuGroup) {
+        this.title = title;
         this.discountAmount = discountAmount;
         this.applicable = applicable;
         this.discountMenuGroup = discountMenuGroup;
