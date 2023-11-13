@@ -27,22 +27,4 @@ public class BenefitsTest {
     void 총_할인금액() {
         assertThat(benefits.getTotalBenefitAmount()).isEqualTo(-15);
     }
-
-    @DisplayName("할인후 예상 결제 금액 반환기능_정상적_처리")
-    @Test
-    void 예상_결제액_정상값() {
-        //given
-        int chargeAmont = 25;
-
-        assertThat(benefits.getExpectedPayAmount(chargeAmont)).isEqualTo(15);
-    }
-
-    @DisplayName("할인후 예상 결제 금액 반환기능_음수 처리")
-    @Test
-    void 예상_결제액_음수처리() {
-        //given
-        int chargeAmont = 5;
-
-        assertThat(benefits.getExpectedPayAmount(chargeAmont)).isEqualTo(0);
-    }
 }
