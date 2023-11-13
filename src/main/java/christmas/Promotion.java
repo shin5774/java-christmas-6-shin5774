@@ -40,8 +40,13 @@ public enum Promotion {
             return 1;
         }
 
-        return (int) order.keySet().stream()
+        return order.keySet().stream()
                 .filter(menu -> MenuGroup.findGroup(menu) == discountMenuGroup)
-                .count();
+                .mapToInt(order::get)
+                .sum();
+    }
+
+    public String getTitle() {
+        return title;
     }
 }
