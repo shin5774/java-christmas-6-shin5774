@@ -18,4 +18,13 @@ public class Benefits {
                 .mapToInt(benefits::get)
                 .sum();
     }
+
+    public int getActualDiscountAmount(Orders orders) {
+        int totalBenefitAmount = getTotalBenefitAmount();
+
+        if (orders.haveGiveawayMenu() && benefits.containsKey("증정 이벤트")) {
+            return totalBenefitAmount;
+        }
+        return totalBenefitAmount - benefits.getOrDefault("증정 이벤트", 0);
+    }
 }

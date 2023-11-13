@@ -21,12 +21,11 @@ public class TotalOrderAmount {
         return amount >= MINIMUM_GIVEAWAY_EVENT_AMOUNT;
     }
 
-    public int getExpectedPayAmount(int totalBenefitAmount) {
-        if (canApplyGiveawayEvent()) {
-            //샴페인 1개의 가격
-            totalBenefitAmount += 25000;
-        }
+    public int getExpectedPayAmount(int actualDiscountAmount) {
+        return Math.max(amount + actualDiscountAmount, 0);
+    }
 
-        return Math.max(amount + totalBenefitAmount, 0);
+    public String toString() {
+        return Integer.toString(amount);
     }
 }

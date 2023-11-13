@@ -28,4 +28,8 @@ public class Orders {
 
         return orderDetails;
     }
+
+    public boolean haveGiveawayMenu() {
+        return orders.containsKey(Menu.CHAMPAGNE);
+    }
 }

@@ -30,7 +30,7 @@ public class TotalOrderAmountTest {
     @ValueSource(ints = {130000, 125000, 160000})
     void 예상_결제액_정상값(int amount) {
         TotalOrderAmount totalOrderAmount = TotalOrderAmount.from(amount);
-        assertThat(totalOrderAmount.getExpectedPayAmount(-25000)).isEqualTo(amount);
+        assertThat(totalOrderAmount.getExpectedPayAmount(-25000)).isEqualTo(amount - 25000);
     }
 
     @DisplayName("할인후 예상 결제 금액 반환기능_음수 처리")
