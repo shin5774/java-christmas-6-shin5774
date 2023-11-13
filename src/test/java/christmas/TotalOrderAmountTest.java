@@ -14,4 +14,12 @@ public class TotalOrderAmountTest {
         TotalOrderAmount totalOrderAmount = TotalOrderAmount.from(amount);
         assertThat(totalOrderAmount.canApplyPromotion()).isEqualTo(expected);
     }
+
+    @DisplayName("증정이벤트 적용여부 확인기능")
+    @ParameterizedTest
+    @CsvSource(value = {"80000:false", "150000:true"}, delimiter = ':')
+    void 증정메뉴_증정여부_확인(int amount, boolean expected) {
+        TotalOrderAmount totalOrderAmount = TotalOrderAmount.from(amount);
+        assertThat(totalOrderAmount.canApplyGiveawayEvent()).isEqualTo(expected);
+    }
 }
