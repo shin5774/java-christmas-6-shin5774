@@ -1,6 +1,7 @@
 package christmas;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Benefits {
     private final Map<String, Integer> benefits;
@@ -26,5 +27,10 @@ public class Benefits {
             return totalBenefitAmount;
         }
         return totalBenefitAmount - benefits.getOrDefault("증정 이벤트", 0);
+    }
+
+    public Map<String, String> getBenefitDetails() {
+        return benefits.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, entry -> String.valueOf(entry.getValue())));
     }
 }

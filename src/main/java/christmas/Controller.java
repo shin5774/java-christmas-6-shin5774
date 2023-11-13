@@ -37,6 +37,16 @@ public class Controller {
         if (totalOrderAmount.canApplyPromotion()) {
             benefits = orders.getBenefits(visitedDate, isGiveawayEvent);
         }
+
+        int totalBenefitsAmount = benefits.getTotalBenefitAmount();
+
+        outputView.printTotalOrderAmount(totalOrderAmount.toString());
+        outputView.printGiveawayEvent(giveawayEvent);
+        outputView.printBenefits(benefits.getBenefitDetails());
+        outputView.printTotalBenefitsAmount(Integer.toString(totalBenefitsAmount));
+        outputView.printExpectedPayAmount(
+                Integer.toString(totalOrderAmount.getExpectedPayAmount(benefits.getActualDiscountAmount(orders))));
+        outputView.printBadge(Badge.findBadge(-totalBenefitsAmount).getName());
     }
 
     private String getGiveawayResult(boolean isGiveawayEvent) {
