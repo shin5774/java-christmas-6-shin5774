@@ -16,15 +16,8 @@ public class Controller {
     }
 
     public void start() {
-        VisitedDateDTO visitedDateDTO = inputView.requestVisitedDate();
-        VisitedDate visitedDate = visitedDateDTO.toVisitedDate();
-
-        List<MenuAndAmount> requestOrders = inputView.requestOrders();
-        MenusValidator.validate(requestOrders);
-
-        Map<Menu, Integer> inputOrders = new EnumMap<>(Menu.class);
-        requestOrders.forEach(order -> inputOrders.put(Menu.findMenu(order.menu()), Integer.parseInt(order.amount())));
-        Orders orders = Orders.of(inputOrders);
+        VisitedDate visitedDate = requestVisitedDate();
+        Orders orders = requestOrders();
 
         outputView.printOrderDetails(orders.getOrderDetails());
 
@@ -54,5 +47,32 @@ public class Controller {
             return "샴페인 1개";
         }
         return "없음";
+    }
+
+    private VisitedDate requestVisitedDate() {
+        while (true) {
+            try {
+                VisitedDateDTO visitedDateDTO = inputView.requestVisitedDate();
+                return visitedDateDTO.toVisitedDate();
+            } catch (IllegalArgumentException exception) {
+                outputView.printExceptionMessage(exception.getMessage());
+            }
+        }
+    }
+
+    private Orders requestOrders() {
+        while (true) {
+            try {
+                List<MenuAndAmount> requestOrders = inputView.requestOrders();
+                MenusValidator.validate(requestOrders);
+
+                Map<Menu, Integer> inputOrders = new EnumMap<>(Menu.class);
+                requestOrders.forEach(
+                        order -> inputOrders.put(Menu.findMenu(order.menu()), Integer.parseInt(order.amount())));
+                return Orders.of(inputOrders);
+            } catch (IllegalArgumentException exception) {
+                outputView.printExceptionMessage(exception.getMessage());
+            }
+        }
     }
 }

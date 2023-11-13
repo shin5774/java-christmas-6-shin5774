@@ -54,4 +54,7 @@ public class OutputView {
         System.out.println(badge);
     }
 
+    public void printExceptionMessage(String message) {
+        System.out.println(message);
+    }
 }
