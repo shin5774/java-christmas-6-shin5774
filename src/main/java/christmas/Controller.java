@@ -2,6 +2,7 @@ package christmas;
 
 import christmas.dto.VisitedDateDTO;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,5 +27,22 @@ public class Controller {
         Orders orders = Orders.of(inputOrders);
 
         outputView.printOrderDetails(orders.getOrderDetails());
+
+        TotalOrderAmount totalOrderAmount = TotalOrderAmount.from(orders.getTotalOrderAmount());
+
+        Benefits benefits = Benefits.from(new HashMap<>());
+        boolean isGiveawayEvent = totalOrderAmount.canApplyGiveawayEvent();
+        String giveawayEvent = getGiveawayResult(isGiveawayEvent);
+
+        if (totalOrderAmount.canApplyPromotion()) {
+            benefits = orders.getBenefits(visitedDate, isGiveawayEvent);
+        }
+    }
+
+    private String getGiveawayResult(boolean isGiveawayEvent) {
+        if (isGiveawayEvent) {
+            return "샴페인 1개";
+        }
+        return "없음";
     }
 }

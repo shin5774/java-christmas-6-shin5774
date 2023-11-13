@@ -1,6 +1,7 @@
 package christmas;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Orders {
@@ -31,5 +32,20 @@ public class Orders {
 
     public boolean haveGiveawayMenu() {
         return orders.containsKey(Menu.CHAMPAGNE);
+    }
+
+    public Benefits getBenefits(VisitedDate visitedDate, boolean isGiveawayEvent) {
+        List<Promotion> applyPromotions = Promotion.findPromotions(visitedDate.getDate());
+        Map<String, Integer> inputBenefits = new HashMap<>();
+        if (isGiveawayEvent) {
+            inputBenefits.put("증정 이벤트", -25000);
+        }
+
+        applyPromotions.forEach(
+                promotion -> inputBenefits.put(promotion.getTitle(),
+                        promotion.getDiscountAmount(visitedDate.getDate(), orders))
+        );
+
+        return Benefits.from(inputBenefits);
     }
 }
