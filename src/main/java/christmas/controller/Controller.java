@@ -6,7 +6,6 @@ import christmas.Orders;
 import christmas.OutputView;
 import christmas.TotalOrderAmount;
 import christmas.VisitedDate;
-import java.util.HashMap;
 
 public class Controller {
     private final OutputView outputView;
@@ -22,13 +21,9 @@ public class Controller {
         outputView.printOrderDetails(orders.getOrderDetails());
 
         TotalOrderAmount totalOrderAmount = TotalOrderAmount.from(orders.getTotalOrderAmount());
-
-        Benefits benefits = Benefits.from(new HashMap<>());
         String giveawayEvent = getGiveawayResult(totalOrderAmount);
 
-        if (totalOrderAmount.canApplyPromotion()) {
-            benefits = orders.getBenefits(visitedDate, totalOrderAmount.getGiveawayEventResult());
-        }
+        Benefits benefits = new CalculateBenefitsController(visitedDate, orders).proceed(totalOrderAmount);
 
         int totalBenefitsAmount = benefits.getTotalBenefitAmount();
 
