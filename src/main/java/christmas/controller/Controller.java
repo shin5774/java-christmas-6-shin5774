@@ -33,21 +33,18 @@ public class Controller {
 
         Benefits benefits = new CalculateBenefitsController(visitedDate, orders).proceed(totalOrderAmount);
 
+        printResult(totalOrderAmount, benefits, orders);
+    }
+
+    private void printResult(TotalOrderAmount totalOrderAmount, Benefits benefits, Orders orders) {
         int totalBenefitsAmount = benefits.getTotalBenefitAmount();
 
         new BeforeOrderPriceView(totalOrderAmount.getAmount()).process();
-        new GiveawayMenuView(getGiveawayResult(totalOrderAmount)).process();
+        new GiveawayMenuView(totalOrderAmount.getGiveawayEventItems()).process();
         new BenefitDetailsView(benefits.getBenefitDetails()).process();
         new TotalBenefitPriceView(totalBenefitsAmount).process();
         new AfterOrderPriceView(
                 totalOrderAmount.getExpectedPayAmount(benefits.getActualDiscountAmount(orders))).process();
         new BadgeView(Badge.findBadge(-totalBenefitsAmount).getName()).process();
-    }
-
-    private String getGiveawayResult(TotalOrderAmount totalOrderAmount) {
-        if (totalOrderAmount.canApplyGiveawayEvent()) {
-            return "샴페인 1개";
-        }
-        return "없음";
     }
 }

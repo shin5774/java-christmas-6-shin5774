@@ -47,4 +47,15 @@ public class TotalOrderAmount {
 
         return giveawayResult;
     }
+
+    public Map<String, Integer> getGiveawayEventItems() {
+        Map<String, Integer> giveawayItem = new HashMap<>();
+
+        if (canApplyGiveawayEvent()) {
+            GIVEAWAY_EVENT_ITEMS.forEach((key, value) -> giveawayItem.put(key.getName(), value));
+        }
+
+        return giveawayItem;
+    }
+
 }

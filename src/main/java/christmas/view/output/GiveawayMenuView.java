@@ -1,11 +1,15 @@
 package christmas.view.output;
 
+import static christmas.view.output.constant.PrintFormat.ORDER_DETAILS_FORMAT;
+
 import christmas.view.output.constant.ResultTitle;
+import java.util.Map;
 
 public class GiveawayMenuView extends ResultView {
-    private final String eventResult;
+    private static final String NONE = "없음";
+    private final Map<String, Integer> eventResult;
 
-    public GiveawayMenuView(String eventResult) {
+    public GiveawayMenuView(Map<String, Integer> eventResult) {
         this.eventResult = eventResult;
     }
 
@@ -16,6 +20,11 @@ public class GiveawayMenuView extends ResultView {
 
     @Override
     void printResult() {
-        System.out.println(eventResult);
+        if (eventResult.isEmpty()) {
+            System.out.println(NONE);
+            return;
+        }
+
+        eventResult.forEach((key, value) -> System.out.println(String.format(ORDER_DETAILS_FORMAT, key, value)));
     }
 }
