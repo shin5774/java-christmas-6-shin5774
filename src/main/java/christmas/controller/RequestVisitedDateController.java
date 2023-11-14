@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.InputView;
+import christmas.Mapper;
 import christmas.VisitedDate;
 import christmas.dto.VisitedDateDTO;
 
@@ -10,6 +11,6 @@ public class RequestVisitedDateController extends RequestController<VisitedDate>
     @Override
     VisitedDate active() {
         VisitedDateDTO visitedDateDTO = inputView.requestVisitedDate();
-        return visitedDateDTO.toVisitedDate();
+        return Mapper.toVisitedDate(visitedDateDTO);
     }
 }
