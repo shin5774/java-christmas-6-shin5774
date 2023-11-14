@@ -1,9 +1,9 @@
 package christmas.controller;
 
-import christmas.InputView;
 import christmas.Mapper;
 import christmas.VisitedDate;
 import christmas.dto.VisitedDateDTO;
+import christmas.view.InputView;
 
 public class RequestVisitedDateController extends RequestController<VisitedDate> {
     private InputView inputView = new InputView();
