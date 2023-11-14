@@ -1,0 +1,18 @@
+package christmas.controller;
+
+import christmas.OutputView;
+
+public abstract class RequestController<E> {
+    private final OutputView outputView = new OutputView();
+
+    public E process() {
+        try {
+            return active();
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception.getMessage());
+            return process();
+        }
+    }
+
+    abstract E active();
+}

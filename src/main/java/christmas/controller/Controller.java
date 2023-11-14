@@ -1,23 +1,23 @@
-package christmas;
+package christmas.controller;
 
-import christmas.dto.VisitedDateDTO;
-import java.util.EnumMap;
+import christmas.Badge;
+import christmas.Benefits;
+import christmas.Orders;
+import christmas.OutputView;
+import christmas.TotalOrderAmount;
+import christmas.VisitedDate;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Controller {
-    private final InputView inputView;
     private final OutputView outputView;
 
-    public Controller(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
+    public Controller(OutputView outputView) {
         this.outputView = outputView;
     }
 
     public void start() {
-        VisitedDate visitedDate = requestVisitedDate();
-        Orders orders = requestOrders();
+        VisitedDate visitedDate = new RequestVisitedDateController().process();
+        Orders orders = new RequestOrdersController().process();
 
         outputView.printOrderDetails(orders.getOrderDetails());
 
@@ -47,32 +47,5 @@ public class Controller {
             return "샴페인 1개";
         }
         return "없음";
-    }
-
-    private VisitedDate requestVisitedDate() {
-        while (true) {
-            try {
-                VisitedDateDTO visitedDateDTO = inputView.requestVisitedDate();
-                return visitedDateDTO.toVisitedDate();
-            } catch (IllegalArgumentException exception) {
-                outputView.printExceptionMessage(exception.getMessage());
-            }
-        }
-    }
-
-    private Orders requestOrders() {
-        while (true) {
-            try {
-                List<MenuAndAmount> requestOrders = inputView.requestOrders();
-                MenusValidator.validate(requestOrders);
-
-                Map<Menu, Integer> inputOrders = new EnumMap<>(Menu.class);
-                requestOrders.forEach(
-                        order -> inputOrders.put(Menu.findMenu(order.menu()), Integer.parseInt(order.amount())));
-                return Orders.of(inputOrders);
-            } catch (IllegalArgumentException exception) {
-                outputView.printExceptionMessage(exception.getMessage());
-            }
-        }
     }
 }
