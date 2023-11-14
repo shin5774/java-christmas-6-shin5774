@@ -25,10 +25,12 @@ public class MenuValidatorTest {
     class AmountException {
         @DisplayName("숫자가 아닌 수량입력값")
         @ParameterizedTest
-        @ValueSource(strings = {"a-a", "a-", "1-a"})
+        @ValueSource(strings = {"a-a", "a-", "1-a", "-a"})
         void 문자입력(String requestMenu) {
-            MenuAndAmount menuAndAmount = Parser.parseMenuAndAmount(requestMenu);
-            assertThatThrownBy(() -> MenuValidator.validate(menuAndAmount)).isInstanceOf(
+            assertThatThrownBy(() -> {
+                MenuAndAmount menuAndAmount = Parser.parseMenuAndAmount(requestMenu);
+                MenuValidator.validate(menuAndAmount);
+            }).isInstanceOf(
                     IllegalArgumentException.class);
         }
 
