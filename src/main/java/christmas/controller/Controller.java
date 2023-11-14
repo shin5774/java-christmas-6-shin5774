@@ -33,12 +33,12 @@ public class Controller {
 
         int totalBenefitsAmount = benefits.getTotalBenefitAmount();
 
-        outputView.printTotalOrderAmount(totalOrderAmount.toString());
+        outputView.printTotalOrderAmount(totalOrderAmount.getAmount());
         outputView.printGiveawayEvent(giveawayEvent);
         outputView.printBenefits(benefits.getBenefitDetails());
-        outputView.printTotalBenefitsAmount(Integer.toString(totalBenefitsAmount));
+        outputView.printTotalBenefitsAmount(totalBenefitsAmount);
         outputView.printExpectedPayAmount(
-                Integer.toString(totalOrderAmount.getExpectedPayAmount(benefits.getActualDiscountAmount(orders))));
+                totalOrderAmount.getExpectedPayAmount(benefits.getActualDiscountAmount(orders)));
         outputView.printBadge(Badge.findBadge(-totalBenefitsAmount).getName());
     }
 

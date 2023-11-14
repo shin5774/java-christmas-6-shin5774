@@ -28,4 +28,8 @@ public class TotalOrderAmount {
     public String toString() {
         return Integer.toString(amount);
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }
