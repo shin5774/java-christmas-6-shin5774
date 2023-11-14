@@ -34,12 +34,8 @@ public class Orders {
         return orders.containsKey(Menu.CHAMPAGNE);
     }
 
-    public Benefits getBenefits(VisitedDate visitedDate, boolean isGiveawayEvent) {
+    public Benefits getBenefits(VisitedDate visitedDate, Map<String, Integer> inputBenefits) {
         List<Promotion> applyPromotions = Promotion.findPromotions(visitedDate.getDate());
-        Map<String, Integer> inputBenefits = new HashMap<>();
-        if (isGiveawayEvent) {
-            inputBenefits.put("증정 이벤트", -25000);
-        }
 
         applyPromotions.forEach(
                 promotion -> inputBenefits.put(promotion.getTitle(),

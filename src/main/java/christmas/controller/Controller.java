@@ -24,11 +24,10 @@ public class Controller {
         TotalOrderAmount totalOrderAmount = TotalOrderAmount.from(orders.getTotalOrderAmount());
 
         Benefits benefits = Benefits.from(new HashMap<>());
-        boolean isGiveawayEvent = totalOrderAmount.canApplyGiveawayEvent();
-        String giveawayEvent = getGiveawayResult(isGiveawayEvent);
+        String giveawayEvent = getGiveawayResult(totalOrderAmount);
 
         if (totalOrderAmount.canApplyPromotion()) {
-            benefits = orders.getBenefits(visitedDate, isGiveawayEvent);
+            benefits = orders.getBenefits(visitedDate, totalOrderAmount.getGiveawayEventResult());
         }
 
         int totalBenefitsAmount = benefits.getTotalBenefitAmount();
@@ -42,8 +41,8 @@ public class Controller {
         outputView.printBadge(Badge.findBadge(-totalBenefitsAmount).getName());
     }
 
-    private String getGiveawayResult(boolean isGiveawayEvent) {
-        if (isGiveawayEvent) {
+    private String getGiveawayResult(TotalOrderAmount totalOrderAmount) {
+        if (totalOrderAmount.canApplyGiveawayEvent()) {
             return "샴페인 1개";
         }
         return "없음";

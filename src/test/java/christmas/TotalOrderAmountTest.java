@@ -39,4 +39,18 @@ public class TotalOrderAmountTest {
         TotalOrderAmount totalOrderAmount = TotalOrderAmount.from(3);
         assertThat(totalOrderAmount.getExpectedPayAmount(-30000)).isEqualTo(0);
     }
+
+    @DisplayName("증정이벤트 결과 반환기능_참가")
+    @Test
+    void 증정이벤트_참가() {
+        TotalOrderAmount totalOrderAmount = TotalOrderAmount.from(170000);
+        assertThat(totalOrderAmount.getGiveawayEventResult().get("증정 이벤트")).isEqualTo(-25000);
+    }
+
+    @DisplayName("증정이벤트 결과 반환기능_미참가")
+    @Test
+    void 증정이벤트_미참가() {
+        TotalOrderAmount totalOrderAmount = TotalOrderAmount.from(3000);
+        assertThat(totalOrderAmount.getGiveawayEventResult().size()).isEqualTo(0);
+    }
 }
