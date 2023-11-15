@@ -8,5 +8,6 @@ public class Application {
         ChristmasPromotionApplication christmasPromotionApplication = new ChristmasPromotionApplication(
                 new MessageController(new MessageView()));
         christmasPromotionApplication.start();
+        christmasPromotionApplication.close();
     }
 }

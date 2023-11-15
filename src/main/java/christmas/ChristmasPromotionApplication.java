@@ -1,5 +1,6 @@
 package christmas;
 
+import camp.nextstep.edu.missionutils.Console;
 import christmas.controller.display.DisplayAfterOrderPriceController;
 import christmas.controller.display.DisplayBadgeController;
 import christmas.controller.display.DisplayBeforeOrderPriceController;
@@ -37,6 +38,10 @@ public class ChristmasPromotionApplication {
         messageController.displayResultStartMessage();
         displayOrderDetails(userInformation);
         displayResult(benefits, orders);
+    }
+
+    public void close() {
+        Console.close();
     }
 
 
