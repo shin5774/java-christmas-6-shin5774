@@ -26,10 +26,6 @@ public class TotalOrderAmount {
         return amount >= MINIMUM_GIVEAWAY_EVENT_AMOUNT;
     }
 
-    public int getExpectedPayAmount(int actualDiscountAmount) {
-        return Math.max(amount + actualDiscountAmount, 0);
-    }
-
     public int getAmount() {
         return amount;
     }

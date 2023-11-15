@@ -44,4 +44,19 @@ public class Orders {
 
         return Benefits.from(inputBenefits);
     }
+
+    public int getAfterOrderPrice(Benefits benefits) {
+        int beforeOrderPrice = getTotalOrderAmount();
+        int totalBenefitPrice = benefits.getTotalBenefitAmount();
+
+        if (isNotApplyGiveawayEventToDiscount(benefits)) {
+            totalBenefitPrice -= benefits.getGiveawayEventPrice();
+        }
+
+        return Math.max(beforeOrderPrice + totalBenefitPrice, 0);
+    }
+
+    private boolean isNotApplyGiveawayEventToDiscount(Benefits benefits) {
+        return !(haveGiveawayMenu() && benefits.hasGiveawayEvent());
+    }
 }

@@ -19,16 +19,15 @@ public class Benefits {
                 .sum();
     }
 
-    public int getActualDiscountAmount(Orders orders) {
-        int totalBenefitAmount = getTotalBenefitAmount();
-
-        if (orders.haveGiveawayMenu() && benefits.containsKey("증정 이벤트")) {
-            return totalBenefitAmount;
-        }
-        return totalBenefitAmount - benefits.getOrDefault("증정 이벤트", 0);
-    }
-
     public Map<String, Integer> getBenefitDetails() {
         return benefits;
+    }
+
+    public boolean hasGiveawayEvent() {
+        return benefits.containsKey("증정 이벤트");
+    }
+
+    public int getGiveawayEventPrice() {
+        return benefits.getOrDefault("증정 이벤트", 0);
     }
 }
