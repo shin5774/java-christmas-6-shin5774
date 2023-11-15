@@ -1,8 +1,11 @@
 package christmas.domain;
 
+import static christmas.domain.constant.Constant.GIVEAWAY_EVENT_TITLE;
+
 import java.util.Map;
 
 public class Benefits {
+    private static final int MINIMUM_GIVEAWAY_EVENT_PRICE = 0;
     private final Map<String, Integer> benefits;
 
     private Benefits(Map<String, Integer> benefits) {
@@ -24,10 +27,10 @@ public class Benefits {
     }
 
     public boolean hasGiveawayEvent() {
-        return benefits.containsKey("증정 이벤트");
+        return benefits.containsKey(GIVEAWAY_EVENT_TITLE);
     }
 
     public int getGiveawayEventPrice() {
-        return benefits.getOrDefault("증정 이벤트", 0);
+        return benefits.getOrDefault(GIVEAWAY_EVENT_TITLE, MINIMUM_GIVEAWAY_EVENT_PRICE);
     }
 }

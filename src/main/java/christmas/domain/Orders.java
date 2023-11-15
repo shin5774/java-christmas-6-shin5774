@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class Orders {
     private static final int MINIMUM_PROMOTION_AMOUNT = 10000;
+    private static final int MINIMUN_AFTER_ORDER_PRICE = 0;
     private final Map<Menu, Integer> orders;
 
     private Orders(Map<Menu, Integer> orders) {
@@ -58,7 +59,7 @@ public class Orders {
             totalBenefitPrice -= benefits.getGiveawayEventPrice();
         }
 
-        return Math.max(beforeOrderPrice + totalBenefitPrice, 0);
+        return Math.max(beforeOrderPrice + totalBenefitPrice, MINIMUN_AFTER_ORDER_PRICE);
     }
 
     private boolean isNotApplyGiveawayEventToDiscount(Benefits benefits) {

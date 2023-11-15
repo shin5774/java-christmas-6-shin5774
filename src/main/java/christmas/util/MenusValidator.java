@@ -19,7 +19,7 @@ public class MenusValidator {
                 .distinct().count();
 
         if (menus.size() != uniqueCount) {
-            throw MenuException.from("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw MenuException.occur();
         }
     }
 
@@ -30,7 +30,7 @@ public class MenusValidator {
                 .sum();
 
         if (totalAmount > AMOUNT_UPPER_LIMIT) {
-            throw MenuException.from("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw MenuException.occur();
         }
     }
 }

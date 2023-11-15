@@ -18,7 +18,7 @@ public class VisitedDate {
 
     private void validate(int date) {
         if (date < START_DATE || date > END_DATE) {
-            throw VisitedDateException.from("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw VisitedDateException.occur();
         }
     }
 

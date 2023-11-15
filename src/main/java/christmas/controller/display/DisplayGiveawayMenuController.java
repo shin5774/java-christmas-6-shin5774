@@ -1,6 +1,6 @@
 package christmas.controller.display;
 
-import christmas.util.GiveawayEvent;
+import christmas.domain.GiveawayEvent;
 import christmas.domain.Orders;
 import christmas.view.output.GiveawayMenuView;
 

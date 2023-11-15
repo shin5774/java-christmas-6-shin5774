@@ -1,11 +1,11 @@
-package christmas.util;
+package christmas.domain;
 
-import christmas.domain.Menu;
+import static christmas.domain.constant.Constant.GIVEAWAY_EVENT_TITLE;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class GiveawayEvent {
-    private static final String GIVEAWAY_EVENT_TITLE = "증정 이벤트";
     private static final Map<Menu, Integer> GIVEAWAY_EVENT_ITEMS = Map.of(Menu.CHAMPAGNE, 1);
     private static final int MINIMUM_GIVEAWAY_EVENT_AMOUNT = 120000;
 

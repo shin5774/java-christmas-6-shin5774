@@ -2,7 +2,7 @@ package christmas.util;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import christmas.util.GiveawayEvent;
+import christmas.domain.GiveawayEvent;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

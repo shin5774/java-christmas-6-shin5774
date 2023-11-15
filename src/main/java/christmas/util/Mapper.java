@@ -12,7 +12,7 @@ import java.util.Map;
 public class Mapper {
     public static VisitedDateDTO toVisitedDateDTO(String requestDate) {
         if (Validator.isNotNumber(requestDate)) {
-            throw VisitedDateException.from("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw VisitedDateException.occur();
         }
 
         return new VisitedDateDTO(requestDate);

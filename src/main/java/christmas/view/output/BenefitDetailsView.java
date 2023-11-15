@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class BenefitDetailsView extends ResultView {
+    private static final String NONE_EXIST = "없음";
     private final Map<String, Integer> benefitsDetails;
 
     public BenefitDetailsView(Map<String, Integer> benefitsDetails) {
@@ -22,7 +23,7 @@ public class BenefitDetailsView extends ResultView {
     @Override
     void printResult() {
         if (benefitsDetails.isEmpty()) {
-            System.out.println("없음");
+            System.out.println(NONE_EXIST);
             return;
         }
 

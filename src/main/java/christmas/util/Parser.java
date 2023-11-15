@@ -15,12 +15,12 @@ public class Parser {
 
     public static MenuAndAmount parseMenuAndAmount(String requestMenu) {
         if (canNotSeprateMenuAndAmount(requestMenu)) {
-            throw MenuException.from("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw MenuException.occur();
         }
 
         List<String> menuAndAmount = parseBySeperator(requestMenu, MENU_AMOUNT_SEPERATOR);
         if (menuAndAmount.size() < MENU_AMOUNT_SET_SIZE) {
-            throw MenuException.from("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw MenuException.occur();
         }
 
         return new MenuAndAmount(menuAndAmount.get(0), menuAndAmount.get(1));
