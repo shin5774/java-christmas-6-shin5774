@@ -15,7 +15,7 @@ public class Orders {
         this.orders = orders;
     }
 
-    public static Orders of(Map<Menu, Integer> orders) {
+    public static Orders from(Map<Menu, Integer> orders) {
         return new Orders(orders);
     }
 

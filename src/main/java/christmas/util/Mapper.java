@@ -19,7 +19,7 @@ public class Mapper {
     }
 
     public static VisitedDate toVisitedDate(VisitedDateDTO visitedDateDTO) {
-        return VisitedDate.of(toInt(visitedDateDTO.requestDate()));
+        return VisitedDate.from(toInt(visitedDateDTO.requestDate()));
     }
 
     private static int toInt(String requestDate) {
@@ -39,6 +39,6 @@ public class Mapper {
         ordersDTO.requestOrders().forEach(
                 order -> inputOrders.put(Menu.findMenu(order.menu()), Integer.parseInt(order.amount())));
 
-        return Orders.of(inputOrders);
+        return Orders.from(inputOrders);
     }
 }

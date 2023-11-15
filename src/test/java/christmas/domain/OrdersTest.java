@@ -19,7 +19,7 @@ public class OrdersTest {
         Arrays.stream(Menu.values())
                 .filter(menu -> !menu.equals(Menu.NONE))
                 .forEach(menu -> order.put(menu, 1));
-        orders = Orders.of(order);
+        orders = Orders.from(order);
     }
 
     @DisplayName("주문 메뉴들의 가격의 합을 구하는 기능")
@@ -49,7 +49,7 @@ public class OrdersTest {
     @Test
     void 프로모션_참가가능_확인_불참() {
         Map<Menu, Integer> orders = new EnumMap<>(Menu.class);
-        Orders noOrder = Orders.of(orders);
+        Orders noOrder = Orders.from(orders);
         assertThat(noOrder.canApplyPromotion()).isEqualTo(false);
     }
 }

@@ -6,9 +6,13 @@ public class UserInformation {
     private final VisitedDate visitedDate;
     private final Orders orders;
 
-    public UserInformation(VisitedDate visitedDate, Orders orders) {
+    private UserInformation(VisitedDate visitedDate, Orders orders) {
         this.visitedDate = visitedDate;
         this.orders = orders;
+    }
+
+    public static UserInformation of(VisitedDate visitedDate, Orders orders) {
+        return new UserInformation(visitedDate, orders);
     }
 
     public Map<String, Integer> getOrderDetails() {

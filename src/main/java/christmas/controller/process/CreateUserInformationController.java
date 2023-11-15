@@ -14,6 +14,6 @@ public class CreateUserInformationController {
     }
 
     public UserInformation proceed() {
-        return new UserInformation(visitedDate, orders);
+        return UserInformation.of(visitedDate, orders);
     }
 }
