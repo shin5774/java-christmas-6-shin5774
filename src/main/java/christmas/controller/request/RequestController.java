@@ -1,4 +1,4 @@
-package christmas.controller;
+package christmas.controller.request;
 
 import christmas.view.output.OutputView;
 

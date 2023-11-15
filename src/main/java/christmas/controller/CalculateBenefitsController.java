@@ -1,7 +1,7 @@
 package christmas.controller;
 
-import christmas.Benefits;
-import christmas.UserInformation;
+import christmas.domain.Benefits;
+import christmas.domain.UserInformation;
 
 public class CalculateBenefitsController {
     private final UserInformation userInformation;

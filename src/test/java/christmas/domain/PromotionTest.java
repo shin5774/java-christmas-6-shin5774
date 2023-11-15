@@ -1,7 +1,9 @@
-package christmas;
+package christmas.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import christmas.domain.Menu;
+import christmas.domain.Promotion;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;

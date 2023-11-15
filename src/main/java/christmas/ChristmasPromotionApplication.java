@@ -1,22 +1,25 @@
-package christmas.controller;
+package christmas;
 
-import christmas.Benefits;
-import christmas.Orders;
-import christmas.UserInformation;
-import christmas.VisitedDate;
+import christmas.controller.CalculateBenefitsController;
 import christmas.controller.display.DisplayAfterOrderPriceController;
 import christmas.controller.display.DisplayBadgeController;
 import christmas.controller.display.DisplayBeforeOrderPriceController;
 import christmas.controller.display.DisplayBenefitDetailsController;
 import christmas.controller.display.DisplayGiveawayMenuController;
 import christmas.controller.display.DisplayTotalBenefitPriceController;
+import christmas.controller.request.RequestOrdersController;
+import christmas.controller.request.RequestVisitedDateController;
+import christmas.domain.Benefits;
+import christmas.domain.Orders;
+import christmas.domain.UserInformation;
+import christmas.domain.VisitedDate;
 import christmas.view.output.OrderDetailView;
 import christmas.view.output.OutputView;
 
-public class Controller {
+public class ChristmasPromotionApplication {
     private final OutputView outputView;
 
-    public Controller(OutputView outputView) {
+    public ChristmasPromotionApplication(OutputView outputView) {
         this.outputView = outputView;
     }
 

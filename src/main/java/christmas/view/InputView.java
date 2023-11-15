@@ -4,7 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import static christmas.view.InformationMessage.REQUEST_ORDERS_MESSAGE;
 import static christmas.view.InformationMessage.REQUEST_VISITED_DATE_MESSAGE;
 
-import christmas.Mapper;
+import christmas.util.Mapper;
 import christmas.dto.OrdersDTO;
 import christmas.dto.VisitedDateDTO;
 

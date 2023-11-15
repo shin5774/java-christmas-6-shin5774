@@ -1,7 +1,8 @@
-package christmas;
+package christmas.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import christmas.domain.Benefits;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;

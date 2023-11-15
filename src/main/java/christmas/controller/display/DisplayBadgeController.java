@@ -1,7 +1,7 @@
 package christmas.controller.display;
 
-import christmas.Badge;
-import christmas.Benefits;
+import christmas.domain.Badge;
+import christmas.domain.Benefits;
 import christmas.view.output.BadgeView;
 
 public class DisplayBadgeController implements DisplayController {

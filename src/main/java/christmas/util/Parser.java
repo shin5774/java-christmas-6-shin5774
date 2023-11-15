@@ -1,5 +1,6 @@
-package christmas;
+package christmas.util;
 
+import christmas.dto.MenuAndAmount;
 import christmas.exception.MenuException;
 import java.util.List;
 

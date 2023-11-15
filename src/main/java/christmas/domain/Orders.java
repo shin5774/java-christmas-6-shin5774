@@ -1,4 +1,4 @@
-package christmas;
+package christmas.domain;
 
 import java.util.HashMap;
 import java.util.List;

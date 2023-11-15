@@ -1,6 +1,6 @@
 package christmas.controller.display;
 
-import christmas.Benefits;
+import christmas.domain.Benefits;
 import christmas.view.output.TotalBenefitPriceView;
 
 public class DisplayTotalBenefitPriceController implements DisplayController {

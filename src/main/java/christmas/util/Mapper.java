@@ -1,5 +1,8 @@
-package christmas;
+package christmas.util;
 
+import christmas.domain.Menu;
+import christmas.domain.Orders;
+import christmas.domain.VisitedDate;
 import christmas.dto.OrdersDTO;
 import christmas.dto.VisitedDateDTO;
 import christmas.exception.VisitedDateException;

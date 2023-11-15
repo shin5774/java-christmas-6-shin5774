@@ -1,5 +1,7 @@
-package christmas;
+package christmas.util;
 
+import christmas.domain.Menu;
+import christmas.dto.MenuAndAmount;
 import christmas.exception.MenuException;
 
 public class MenuValidator {

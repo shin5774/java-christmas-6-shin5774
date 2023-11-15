@@ -1,5 +1,6 @@
-package christmas;
+package christmas.domain;
 
+import christmas.util.GiveawayEvent;
 import java.util.Map;
 
 public class UserInformation {

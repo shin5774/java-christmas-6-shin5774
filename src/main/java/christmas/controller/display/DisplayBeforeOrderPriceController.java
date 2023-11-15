@@ -1,6 +1,6 @@
 package christmas.controller.display;
 
-import christmas.Orders;
+import christmas.domain.Orders;
 import christmas.view.output.BeforeOrderPriceView;
 
 public class DisplayBeforeOrderPriceController implements DisplayController {

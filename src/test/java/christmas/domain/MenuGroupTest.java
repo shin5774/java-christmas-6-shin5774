@@ -1,7 +1,9 @@
-package christmas;
+package christmas.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import christmas.domain.Menu;
+import christmas.domain.MenuGroup;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;

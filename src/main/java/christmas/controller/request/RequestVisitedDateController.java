@@ -1,8 +1,8 @@
-package christmas.controller;
+package christmas.controller.request;
 
-import christmas.Mapper;
-import christmas.VisitedDate;
+import christmas.domain.VisitedDate;
 import christmas.dto.VisitedDateDTO;
+import christmas.util.Mapper;
 import christmas.view.InputView;
 
 public class RequestVisitedDateController extends RequestController<VisitedDate> {
