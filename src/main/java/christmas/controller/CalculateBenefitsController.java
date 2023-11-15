@@ -1,27 +1,16 @@
 package christmas.controller;
 
 import christmas.Benefits;
-import christmas.Orders;
-import christmas.TotalOrderAmount;
-import christmas.VisitedDate;
-import java.util.Map;
+import christmas.UserInformation;
 
 public class CalculateBenefitsController {
-    private final VisitedDate visitedDate;
-    private final Orders orders;
+    private final UserInformation userInformation;
 
-    public CalculateBenefitsController(VisitedDate visitedDate, Orders orders) {
-        this.visitedDate = visitedDate;
-        this.orders = orders;
+    public CalculateBenefitsController(UserInformation userInformation) {
+        this.userInformation = userInformation;
     }
 
-    public Benefits proceed(TotalOrderAmount totalOrderAmount) {
-        Map<String, Integer> giveawayEventResult = totalOrderAmount.getGiveawayEventResult();
-
-        if (totalOrderAmount.canApplyPromotion()) {
-            return orders.getBenefits(visitedDate, giveawayEventResult);
-        }
-
-        return Benefits.from(giveawayEventResult);
+    public Benefits proceed() {
+        return userInformation.getBenefits();
     }
 }

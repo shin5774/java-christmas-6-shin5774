@@ -1,17 +1,19 @@
 package christmas.controller.display;
 
-import christmas.TotalOrderAmount;
+import christmas.GiveawayEvent;
+import christmas.Orders;
 import christmas.view.output.GiveawayMenuView;
 
 public class DisplayGiveawayMenuController implements DisplayController {
-    private final TotalOrderAmount totalOrderAmount;
+    private final Orders orders;
 
-    public DisplayGiveawayMenuController(TotalOrderAmount totalOrderAmount) {
-        this.totalOrderAmount = totalOrderAmount;
+    public DisplayGiveawayMenuController(Orders orders) {
+        this.orders = orders;
     }
 
     @Override
     public void process() {
-        new GiveawayMenuView(totalOrderAmount.getGiveawayEventItems()).process();
+        int beforeOrderPrice = orders.getTotalOrderAmount();
+        new GiveawayMenuView(GiveawayEvent.getGiveawayEventItems(beforeOrderPrice)).process();
     }
 }

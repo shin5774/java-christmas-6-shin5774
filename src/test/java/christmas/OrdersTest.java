@@ -38,4 +38,18 @@ public class OrdersTest {
         orders.getOrderDetails().keySet()
                 .forEach(menu -> assertThat(menuNames.contains(menu)).isTrue());
     }
+
+    @DisplayName("프로모션 참가 가능여부 확인기능_참가")
+    @Test
+    void 프로모션_참가가능_확인_참가() {
+        assertThat(orders.canApplyPromotion()).isEqualTo(true);
+    }
+
+    @DisplayName("프로모션 참가 가능여부 확인기능_불참가")
+    @Test
+    void 프로모션_참가가능_확인_불참() {
+        Map<Menu, Integer> orders = new EnumMap<>(Menu.class);
+        Orders noOrder = Orders.of(orders);
+        assertThat(noOrder.canApplyPromotion()).isEqualTo(false);
+    }
 }

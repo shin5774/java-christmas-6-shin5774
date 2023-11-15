@@ -2,7 +2,7 @@ package christmas.controller;
 
 import christmas.Benefits;
 import christmas.Orders;
-import christmas.TotalOrderAmount;
+import christmas.UserInformation;
 import christmas.VisitedDate;
 import christmas.controller.display.DisplayAfterOrderPriceController;
 import christmas.controller.display.DisplayBadgeController;
@@ -24,32 +24,31 @@ public class Controller {
         outputView.printPlannerStartMessage();
         VisitedDate visitedDate = new RequestVisitedDateController().process();
         Orders orders = new RequestOrdersController().process();
+        UserInformation userInformation = new UserInformation(visitedDate, orders);
 
         outputView.printResultStartMessage();
-        new OrderDetailView(orders.getOrderDetails()).process();
+        new OrderDetailView(userInformation.getOrderDetails()).process();
 
-        TotalOrderAmount totalOrderAmount = TotalOrderAmount.from(orders.getTotalOrderAmount());
+        Benefits benefits = new CalculateBenefitsController(userInformation).proceed();
 
-        Benefits benefits = new CalculateBenefitsController(visitedDate, orders).proceed(totalOrderAmount);
-
-        printResult(totalOrderAmount, benefits, orders);
+        printResult(benefits, orders);
     }
 
-    private void printResult(TotalOrderAmount totalOrderAmount, Benefits benefits, Orders orders) {
-        displayBeforeOrderPrice(totalOrderAmount);
-        displayGiveawayMenu(totalOrderAmount);
+    private void printResult(Benefits benefits, Orders orders) {
+        displayBeforeOrderPrice(orders);
+        displayGiveawayMenu(orders);
         displayBenefitDetails(benefits);
         displayTotalBenefitPrice(benefits);
         displayAfterOrderPrice(orders, benefits);
         displayBadge(benefits);
     }
 
-    private void displayBeforeOrderPrice(TotalOrderAmount totalOrderAmount) {
-        new DisplayBeforeOrderPriceController(totalOrderAmount).process();
+    private void displayBeforeOrderPrice(Orders orders) {
+        new DisplayBeforeOrderPriceController(orders).process();
     }
 
-    private void displayGiveawayMenu(TotalOrderAmount totalOrderAmount) {
-        new DisplayGiveawayMenuController(totalOrderAmount).process();
+    private void displayGiveawayMenu(Orders orders) {
+        new DisplayGiveawayMenuController(orders).process();
     }
 
     private void displayBenefitDetails(Benefits benefits) {

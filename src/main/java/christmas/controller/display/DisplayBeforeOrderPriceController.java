@@ -1,18 +1,18 @@
 package christmas.controller.display;
 
-import christmas.TotalOrderAmount;
+import christmas.Orders;
 import christmas.view.output.BeforeOrderPriceView;
 
 public class DisplayBeforeOrderPriceController implements DisplayController {
-    private final TotalOrderAmount totalOrderAmount;
+    private final Orders orders;
 
-    public DisplayBeforeOrderPriceController(TotalOrderAmount totalOrderAmount) {
-        this.totalOrderAmount = totalOrderAmount;
+    public DisplayBeforeOrderPriceController(Orders orders) {
+        this.orders = orders;
     }
 
     @Override
     public void process() {
-        new BeforeOrderPriceView(totalOrderAmount.getAmount()).process();
+        new BeforeOrderPriceView(orders.getTotalOrderAmount()).process();
     }
 
 }

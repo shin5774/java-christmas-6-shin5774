@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Orders {
+    private static final int MINIMUM_PROMOTION_AMOUNT = 10000;
     private final Map<Menu, Integer> orders;
 
     private Orders(Map<Menu, Integer> orders) {
@@ -19,6 +20,10 @@ public class Orders {
         return orders.keySet().stream()
                 .mapToInt(menu -> menu.getPrice() * orders.get(menu))
                 .sum();
+    }
+
+    public boolean canApplyPromotion() {
+        return getTotalOrderAmount() >= MINIMUM_PROMOTION_AMOUNT;
     }
 
     public Map<String, Integer> getOrderDetails() {
