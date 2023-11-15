@@ -12,6 +12,8 @@ public enum Promotion {
     WEEKEND("주말 할인", always -> -2023, day -> day % 7 == 1 || day % 7 == 2, MenuGroup.MAIN),
     SPECIAL("특별 할인", always -> -1000, day -> List.of(3, 10, 17, 24, 25, 31).contains(day), MenuGroup.NONE);
 
+    private static final int MINIMAL_MENU_AMOUNT = 1;
+
     private final String title;
     private final UnaryOperator<Integer> discountAmount;
     private final Predicate<Integer> applicable;
@@ -37,7 +39,7 @@ public enum Promotion {
 
     private int getDiscountMenuAmount(Map<Menu, Integer> order) {
         if (discountMenuGroup == MenuGroup.NONE) {
-            return 1;
+            return MINIMAL_MENU_AMOUNT;
         }
 
         return order.keySet().stream()
