@@ -1,7 +1,7 @@
 package christmas.view.display;
 
 public abstract class ResultView {
-    public void process() {
+    public void proceed() {
         printTitle();
         printResult();
         System.out.println();

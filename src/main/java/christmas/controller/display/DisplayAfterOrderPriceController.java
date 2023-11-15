@@ -14,7 +14,7 @@ public class DisplayAfterOrderPriceController implements DisplayController {
     }
 
     @Override
-    public void process() {
-        new AfterOrderPriceView(orders.getAfterOrderPrice(benefits)).process();
+    public void proceed() {
+        new AfterOrderPriceView(orders.getAfterOrderPrice(benefits)).proceed();
     }
 }

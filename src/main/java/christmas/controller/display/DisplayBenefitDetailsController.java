@@ -11,7 +11,7 @@ public class DisplayBenefitDetailsController implements DisplayController {
     }
 
     @Override
-    public void process() {
-        new BenefitDetailsView(benefits.getBenefitDetails()).process();
+    public void proceed() {
+        new BenefitDetailsView(benefits.getBenefitDetails()).proceed();
     }
 }

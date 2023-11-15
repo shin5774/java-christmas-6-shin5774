@@ -11,8 +11,8 @@ public class DisplayBeforeOrderPriceController implements DisplayController {
     }
 
     @Override
-    public void process() {
-        new BeforeOrderPriceView(orders.getTotalOrderAmount()).process();
+    public void proceed() {
+        new BeforeOrderPriceView(orders.getTotalOrderAmount()).proceed();
     }
 
 }

@@ -13,7 +13,7 @@ public class CreateUserInformationController {
         this.orders = orders;
     }
 
-    public UserInformation process() {
+    public UserInformation proceed() {
         return new UserInformation(visitedDate, orders);
     }
 }

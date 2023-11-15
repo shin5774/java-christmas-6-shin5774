@@ -12,9 +12,9 @@ public class DisplayBadgeController implements DisplayController {
     }
 
     @Override
-    public void process() {
+    public void proceed() {
         int totalBenefitsAmount = benefits.getTotalBenefitAmount();
         Badge badge = Badge.findBadge(-totalBenefitsAmount);
-        new BadgeView(badge.getName()).process();
+        new BadgeView(badge.getName()).proceed();
     }
 }

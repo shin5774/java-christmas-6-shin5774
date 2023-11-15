@@ -5,14 +5,14 @@ import christmas.view.display.ErrorView;
 public abstract class RequestController<E> {
     private final ErrorView errorView = new ErrorView();
 
-    public E process() {
+    public E proceed() {
         try {
-            return active();
+            return request();
         } catch (IllegalArgumentException exception) {
             errorView.printExceptionMessage(exception.getMessage());
-            return process();
+            return proceed();
         }
     }
 
-    abstract E active();
+    abstract E request();
 }

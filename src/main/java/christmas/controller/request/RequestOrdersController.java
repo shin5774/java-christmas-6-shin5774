@@ -9,7 +9,7 @@ public class RequestOrdersController extends RequestController<Orders> {
     private RequestOrdersView requestView = new RequestOrdersView();
 
     @Override
-    Orders active() {
+    Orders request() {
         OrdersDTO ordersDTO = requestView.process();
         return Mapper.toOrders(ordersDTO);
     }

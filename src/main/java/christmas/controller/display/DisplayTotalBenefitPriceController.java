@@ -11,7 +11,7 @@ public class DisplayTotalBenefitPriceController implements DisplayController {
     }
 
     @Override
-    public void process() {
-        new TotalBenefitPriceView(benefits.getTotalBenefitAmount()).process();
+    public void proceed() {
+        new TotalBenefitPriceView(benefits.getTotalBenefitAmount()).proceed();
     }
 }

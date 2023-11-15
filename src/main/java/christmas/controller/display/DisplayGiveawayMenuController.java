@@ -12,8 +12,8 @@ public class DisplayGiveawayMenuController implements DisplayController {
     }
 
     @Override
-    public void process() {
+    public void proceed() {
         int beforeOrderPrice = orders.getTotalOrderAmount();
-        new GiveawayMenuView(GiveawayEvent.getGiveawayEventItems(beforeOrderPrice)).process();
+        new GiveawayMenuView(GiveawayEvent.getGiveawayEventItems(beforeOrderPrice)).proceed();
     }
 }

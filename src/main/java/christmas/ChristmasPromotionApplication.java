@@ -38,19 +38,19 @@ public class ChristmasPromotionApplication {
 
 
     private VisitedDate requestVisitedDate() {
-        return new RequestVisitedDateController().process();
+        return new RequestVisitedDateController().proceed();
     }
 
     private Orders requestOrders() {
-        return new RequestOrdersController().process();
+        return new RequestOrdersController().proceed();
     }
 
     private UserInformation createUserInformation(VisitedDate visitedDate, Orders orders) {
-        return new CreateUserInformationController(visitedDate, orders).process();
+        return new CreateUserInformationController(visitedDate, orders).proceed();
     }
-    
+
     private void displayOrderDetails(UserInformation userInformation) {
-        new OrderDetailView(userInformation.getOrderDetails()).process();
+        new OrderDetailView(userInformation.getOrderDetails()).proceed();
     }
 
     private Benefits calculateBenefits(UserInformation userInformation) {
@@ -67,26 +67,26 @@ public class ChristmasPromotionApplication {
     }
 
     private void displayBeforeOrderPrice(Orders orders) {
-        new DisplayBeforeOrderPriceController(orders).process();
+        new DisplayBeforeOrderPriceController(orders).proceed();
     }
 
     private void displayGiveawayMenu(Orders orders) {
-        new DisplayGiveawayMenuController(orders).process();
+        new DisplayGiveawayMenuController(orders).proceed();
     }
 
     private void displayBenefitDetails(Benefits benefits) {
-        new DisplayBenefitDetailsController(benefits).process();
+        new DisplayBenefitDetailsController(benefits).proceed();
     }
 
     private void displayTotalBenefitPrice(Benefits benefits) {
-        new DisplayTotalBenefitPriceController(benefits).process();
+        new DisplayTotalBenefitPriceController(benefits).proceed();
     }
 
     private void displayAfterOrderPrice(Orders orders, Benefits benefits) {
-        new DisplayAfterOrderPriceController(orders, benefits).process();
+        new DisplayAfterOrderPriceController(orders, benefits).proceed();
     }
 
     private void displayBadge(Benefits benefits) {
-        new DisplayBadgeController(benefits).process();
+        new DisplayBadgeController(benefits).proceed();
     }
 }

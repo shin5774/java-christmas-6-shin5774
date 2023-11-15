@@ -9,7 +9,7 @@ public class RequestVisitedDateController extends RequestController<VisitedDate>
     private RequestVisitedDateView requestView = new RequestVisitedDateView();
 
     @Override
-    VisitedDate active() {
+    VisitedDate request() {
         VisitedDateDTO visitedDateDTO = requestView.process();
         return Mapper.toVisitedDate(visitedDateDTO);
     }
