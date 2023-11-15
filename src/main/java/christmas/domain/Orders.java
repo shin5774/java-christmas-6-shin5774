@@ -9,6 +9,7 @@ import java.util.Map;
 public class Orders {
     private static final int MINIMUM_PROMOTION_AMOUNT = 10000;
     private static final int MINIMUN_AFTER_ORDER_PRICE = 0;
+    private static final int NOT_APPLY_PROMOTION_PRICE = 0;
     private final Map<Menu, Integer> orders;
 
     private Orders(Map<Menu, Integer> orders) {
@@ -41,10 +42,11 @@ public class Orders {
     public Benefits getBenefits(VisitedDate visitedDate, Map<String, Integer> inputBenefits) {
         List<Promotion> applyPromotions = Promotion.findPromotions(visitedDate.getDate());
 
-        applyPromotions.forEach(
-                promotion -> inputBenefits.put(promotion.getTitle(),
-                        promotion.getDiscountPrice(visitedDate.getDate(), orders))
-        );
+        applyPromotions.stream()
+                .map(promotion -> Map.entry(promotion.getTitle(),
+                        promotion.getDiscountPrice(visitedDate.getDate(), orders)))
+                .filter(entry -> entry.getValue() != NOT_APPLY_PROMOTION_PRICE)
+                .forEach(entry -> inputBenefits.put(entry.getKey(), entry.getValue()));
 
         return Benefits.from(inputBenefits);
     }
