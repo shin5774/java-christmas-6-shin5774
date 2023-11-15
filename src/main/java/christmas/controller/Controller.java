@@ -1,18 +1,17 @@
 package christmas.controller;
 
-import christmas.Badge;
 import christmas.Benefits;
 import christmas.Orders;
 import christmas.TotalOrderAmount;
 import christmas.VisitedDate;
-import christmas.view.output.AfterOrderPriceView;
-import christmas.view.output.BadgeView;
-import christmas.view.output.BeforeOrderPriceView;
-import christmas.view.output.BenefitDetailsView;
-import christmas.view.output.GiveawayMenuView;
+import christmas.controller.display.DisplayAfterOrderPriceController;
+import christmas.controller.display.DisplayBadgeController;
+import christmas.controller.display.DisplayBeforeOrderPriceController;
+import christmas.controller.display.DisplayBenefitDetailsController;
+import christmas.controller.display.DisplayGiveawayMenuController;
+import christmas.controller.display.DisplayTotalBenefitPriceController;
 import christmas.view.output.OrderDetailView;
 import christmas.view.output.OutputView;
-import christmas.view.output.TotalBenefitPriceView;
 
 public class Controller {
     private final OutputView outputView;
@@ -37,14 +36,35 @@ public class Controller {
     }
 
     private void printResult(TotalOrderAmount totalOrderAmount, Benefits benefits, Orders orders) {
-        int totalBenefitsAmount = benefits.getTotalBenefitAmount();
+        displayBeforeOrderPrice(totalOrderAmount);
+        displayGiveawayMenu(totalOrderAmount);
+        displayBenefitDetails(benefits);
+        displayTotalBenefitPrice(benefits);
+        displayAfterOrderPrice(orders, benefits);
+        displayBadge(benefits);
+    }
 
-        new BeforeOrderPriceView(totalOrderAmount.getAmount()).process();
-        new GiveawayMenuView(totalOrderAmount.getGiveawayEventItems()).process();
-        new BenefitDetailsView(benefits.getBenefitDetails()).process();
-        new TotalBenefitPriceView(totalBenefitsAmount).process();
-        new AfterOrderPriceView(
-                totalOrderAmount.getExpectedPayAmount(benefits.getActualDiscountAmount(orders))).process();
-        new BadgeView(Badge.findBadge(-totalBenefitsAmount).getName()).process();
+    private void displayBeforeOrderPrice(TotalOrderAmount totalOrderAmount) {
+        new DisplayBeforeOrderPriceController(totalOrderAmount).process();
+    }
+
+    private void displayGiveawayMenu(TotalOrderAmount totalOrderAmount) {
+        new DisplayGiveawayMenuController(totalOrderAmount).process();
+    }
+
+    private void displayBenefitDetails(Benefits benefits) {
+        new DisplayBenefitDetailsController(benefits).process();
+    }
+
+    private void displayTotalBenefitPrice(Benefits benefits) {
+        new DisplayTotalBenefitPriceController(benefits).process();
+    }
+
+    private void displayAfterOrderPrice(Orders orders, Benefits benefits) {
+        new DisplayAfterOrderPriceController(orders, benefits).process();
+    }
+
+    private void displayBadge(Benefits benefits) {
+        new DisplayBadgeController(benefits).process();
     }
 }
