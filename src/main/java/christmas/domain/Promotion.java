@@ -31,7 +31,7 @@ public enum Promotion {
                 .toList();
     }
 
-    public int getDiscountAmount(int day, Map<Menu, Integer> order) {
+    public int getDiscountPrice(int day, Map<Menu, Integer> order) {
         return discountAmount.apply(day) * getDiscountMenuAmount(order);
     }
 

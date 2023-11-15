@@ -25,7 +25,7 @@ public class OrdersTest {
     @DisplayName("주문 메뉴들의 가격의 합을 구하는 기능")
     @Test
     void 할인전_총_주문_금액_반환() {
-        assertThat(orders.getTotalOrderAmount()).isEqualTo(296500);
+        assertThat(orders.getTotalOrderPrice()).isEqualTo(296500);
     }
 
     @DisplayName("주문 메뉴의 이름과 개수를 반환해주는 기능")

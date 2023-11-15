@@ -1,14 +1,14 @@
 package christmas.view.display;
 
-import static christmas.view.display.constant.PrintFormat.amountFormat;
+import static christmas.view.display.constant.PrintFormat.PRICE_FORMAT;
 
 import christmas.view.display.constant.ResultTitle;
 
 public class TotalBenefitPriceView extends ResultView {
-    private final int amount;
+    private final int price;
 
-    public TotalBenefitPriceView(int amount) {
-        this.amount = amount;
+    public TotalBenefitPriceView(int price) {
+        this.price = price;
     }
 
     @Override
@@ -18,6 +18,6 @@ public class TotalBenefitPriceView extends ResultView {
 
     @Override
     void printResult() {
-        System.out.println(amountFormat.format(amount));
+        System.out.println(PRICE_FORMAT.format(price));
     }
 }

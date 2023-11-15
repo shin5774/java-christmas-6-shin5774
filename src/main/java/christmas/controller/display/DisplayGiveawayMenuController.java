@@ -13,7 +13,7 @@ public class DisplayGiveawayMenuController implements DisplayController {
 
     @Override
     public void proceed() {
-        int beforeOrderPrice = orders.getTotalOrderAmount();
-        new GiveawayMenuView(GiveawayEvent.getGiveawayEventItems(beforeOrderPrice)).proceed();
+        int beforeOrderPrice = orders.getTotalOrderPrice();
+        new GiveawayMenuView(GiveawayEvent.getGiveawayEventMenuResult(beforeOrderPrice)).proceed();
     }
 }

@@ -17,14 +17,14 @@ public class Orders {
         return new Orders(orders);
     }
 
-    public int getTotalOrderAmount() {
+    public int getTotalOrderPrice() {
         return orders.keySet().stream()
                 .mapToInt(menu -> menu.getPrice() * orders.get(menu))
                 .sum();
     }
 
     public boolean canApplyPromotion() {
-        return getTotalOrderAmount() >= MINIMUM_PROMOTION_AMOUNT;
+        return getTotalOrderPrice() >= MINIMUM_PROMOTION_AMOUNT;
     }
 
     public Map<String, Integer> getOrderDetails() {
@@ -45,14 +45,14 @@ public class Orders {
 
         applyPromotions.forEach(
                 promotion -> inputBenefits.put(promotion.getTitle(),
-                        promotion.getDiscountAmount(visitedDate.getDate(), orders))
+                        promotion.getDiscountPrice(visitedDate.getDate(), orders))
         );
 
         return Benefits.from(inputBenefits);
     }
 
     public int getAfterOrderPrice(Benefits benefits) {
-        int beforeOrderPrice = getTotalOrderAmount();
+        int beforeOrderPrice = getTotalOrderPrice();
         int totalBenefitPrice = benefits.getTotalBenefitAmount();
 
         if (isNotApplyGiveawayEventToDiscount(benefits)) {

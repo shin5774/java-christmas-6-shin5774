@@ -13,7 +13,7 @@ public class GiveawayEvent {
         return totalOrderAmount >= MINIMUM_GIVEAWAY_EVENT_AMOUNT;
     }
 
-    public static Map<String, Integer> getGiveawayEventResult(int totalOrderAmount) {
+    public static Map<String, Integer> getGiveawayEventPriceResult(int totalOrderAmount) {
         Map<String, Integer> giveawayResult = new HashMap<>();
 
         if (canApplyGiveawayEvent(totalOrderAmount)) {
@@ -27,7 +27,7 @@ public class GiveawayEvent {
         return giveawayResult;
     }
 
-    public static Map<String, Integer> getGiveawayEventItems(int totalOrderAmount) {
+    public static Map<String, Integer> getGiveawayEventMenuResult(int totalOrderAmount) {
         Map<String, Integer> giveawayItem = new HashMap<>();
 
         if (canApplyGiveawayEvent(totalOrderAmount)) {

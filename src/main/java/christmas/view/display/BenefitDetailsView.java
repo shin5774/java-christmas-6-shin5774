@@ -1,7 +1,7 @@
 package christmas.view.display;
 
 import static christmas.view.display.constant.PrintFormat.BENEFITS_DETAILS_FORMAT;
-import static christmas.view.display.constant.PrintFormat.amountFormat;
+import static christmas.view.display.constant.PrintFormat.PRICE_FORMAT;
 
 import christmas.view.display.constant.ResultTitle;
 import java.util.Map;
@@ -9,10 +9,10 @@ import java.util.Map.Entry;
 
 public class BenefitDetailsView extends ResultView {
     private static final String NONE_EXIST = "없음";
-    private final Map<String, Integer> benefitsDetails;
+    private final Map<String, Integer> benefitDetails;
 
-    public BenefitDetailsView(Map<String, Integer> benefitsDetails) {
-        this.benefitsDetails = benefitsDetails;
+    public BenefitDetailsView(Map<String, Integer> benefitDetails) {
+        this.benefitDetails = benefitDetails;
     }
 
     @Override
@@ -22,16 +22,16 @@ public class BenefitDetailsView extends ResultView {
 
     @Override
     void printResult() {
-        if (benefitsDetails.isEmpty()) {
+        if (benefitDetails.isEmpty()) {
             System.out.println(NONE_EXIST);
             return;
         }
 
-        benefitsDetails.entrySet().forEach(this::printBenefit);
+        benefitDetails.entrySet().forEach(this::printBenefit);
     }
 
     private void printBenefit(Entry<String, Integer> benefit) {
         System.out.println(String.format(BENEFITS_DETAILS_FORMAT, benefit.getKey(),
-                amountFormat.format(benefit.getValue())));
+                PRICE_FORMAT.format(benefit.getValue())));
     }
 }

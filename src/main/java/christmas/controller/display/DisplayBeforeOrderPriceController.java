@@ -12,7 +12,7 @@ public class DisplayBeforeOrderPriceController implements DisplayController {
 
     @Override
     public void proceed() {
-        new BeforeOrderPriceView(orders.getTotalOrderAmount()).proceed();
+        new BeforeOrderPriceView(orders.getTotalOrderPrice()).proceed();
     }
 
 }

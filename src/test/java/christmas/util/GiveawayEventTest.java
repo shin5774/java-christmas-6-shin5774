@@ -19,12 +19,12 @@ public class GiveawayEventTest {
     @DisplayName("증정이벤트 결과 반환기능_참가")
     @Test
     void 증정이벤트_참가() {
-        assertThat(GiveawayEvent.getGiveawayEventResult(170000).get("증정 이벤트")).isEqualTo(-25000);
+        assertThat(GiveawayEvent.getGiveawayEventPriceResult(170000).get("증정 이벤트")).isEqualTo(-25000);
     }
 
     @DisplayName("증정이벤트 결과 반환기능_미참가")
     @Test
     void 증정이벤트_미참가() {
-        assertThat(GiveawayEvent.getGiveawayEventResult(3000).size()).isEqualTo(0);
+        assertThat(GiveawayEvent.getGiveawayEventPriceResult(3000).size()).isEqualTo(0);
     }
 }

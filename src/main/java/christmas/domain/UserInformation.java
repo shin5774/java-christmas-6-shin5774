@@ -16,7 +16,8 @@ public class UserInformation {
     }
 
     public Benefits getBenefits() {
-        Map<String, Integer> giveawayEventResult = GiveawayEvent.getGiveawayEventResult(orders.getTotalOrderAmount());
+        Map<String, Integer> giveawayEventResult = GiveawayEvent.getGiveawayEventPriceResult(
+                orders.getTotalOrderPrice());
 
         if (orders.canApplyPromotion()) {
             return orders.getBenefits(visitedDate, giveawayEventResult);

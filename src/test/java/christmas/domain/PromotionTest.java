@@ -2,8 +2,6 @@ package christmas.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import christmas.domain.Menu;
-import christmas.domain.Promotion;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
@@ -30,7 +28,7 @@ public class PromotionTest {
         Map<Menu, Integer> order = new EnumMap<>(Menu.class);
         Arrays.stream(Menu.values()).forEach(menu -> order.put(menu, 1));
 
-        assertThat(promotion.getDiscountAmount(day, order)).isEqualTo(discountAmount);
+        assertThat(promotion.getDiscountPrice(day, order)).isEqualTo(discountAmount);
     }
 
     static Stream<Arguments> dayAndPromotions() {
