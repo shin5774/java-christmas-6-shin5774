@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import static christmas.domain.constant.Constant.GIVEAWAY_EVENT_ITEMS;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,10 +38,6 @@ public class Orders {
         return orderDetails;
     }
 
-    public boolean haveGiveawayMenu() {
-        return orders.containsKey(Menu.CHAMPAGNE);
-    }
-
     public Benefits getBenefits(VisitedDate visitedDate, Map<String, Integer> inputBenefits) {
         List<Promotion> applyPromotions = Promotion.findPromotions(visitedDate.getDate());
 
@@ -55,14 +53,25 @@ public class Orders {
         int beforeOrderPrice = getTotalOrderPrice();
         int totalBenefitPrice = benefits.getTotalBenefitAmount();
 
-        if (isNotApplyGiveawayEventToDiscount(benefits)) {
-            totalBenefitPrice -= benefits.getGiveawayEventPrice();
+        if (benefits.hasGiveawayEvent()) {
+            totalBenefitPrice += getExceptBenefitPrice();
         }
 
         return Math.max(beforeOrderPrice + totalBenefitPrice, MINIMUN_AFTER_ORDER_PRICE);
     }
 
-    private boolean isNotApplyGiveawayEventToDiscount(Benefits benefits) {
-        return !(haveGiveawayMenu() && benefits.hasGiveawayEvent());
+    private int getExceptBenefitPrice() {
+        // 주문 목록중 증정 메뉴에 포함되지 않는 메뉴들의 가격들의 총합
+        int notContainMenusPrice = GIVEAWAY_EVENT_ITEMS.keySet().stream()
+                .filter(menu -> !orders.containsKey(menu))
+                .mapToInt(menu -> menu.getPrice() * GIVEAWAY_EVENT_ITEMS.get(menu))
+                .sum();
+        //주문 목록중 증정 메뉴에 일부 포함되어 있는 메뉴들의 가격들의 총합
+        int someContainMenusPrice = GIVEAWAY_EVENT_ITEMS.keySet().stream()
+                .filter(menu -> orders.getOrDefault(menu, 0) >= GIVEAWAY_EVENT_ITEMS.get(menu))
+                .mapToInt(menu -> menu.getPrice() * (orders.get(menu) - GIVEAWAY_EVENT_ITEMS.get(menu)))
+                .sum();
+
+        return notContainMenusPrice + someContainMenusPrice;
     }
 }

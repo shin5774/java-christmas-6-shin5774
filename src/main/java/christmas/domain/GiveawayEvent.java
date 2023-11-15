@@ -1,12 +1,12 @@
 package christmas.domain;
 
+import static christmas.domain.constant.Constant.GIVEAWAY_EVENT_ITEMS;
 import static christmas.domain.constant.Constant.GIVEAWAY_EVENT_TITLE;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class GiveawayEvent {
-    private static final Map<Menu, Integer> GIVEAWAY_EVENT_ITEMS = Map.of(Menu.CHAMPAGNE, 1);
     private static final int MINIMUM_GIVEAWAY_EVENT_AMOUNT = 120000;
 
     public static boolean canApplyGiveawayEvent(int totalOrderAmount) {
