@@ -8,6 +8,8 @@ public class Parser {
     private static final String MENUS_SEPERATOR = ",";
     private static final String MENU_AMOUNT_SEPERATOR = "-";
     private static final int MENU_AMOUNT_SET_SIZE = 2;
+    private static final int MENU_INDEX = 0;
+    private static final int AMOUNT_INDEX = 1;
 
     public static List<String> parseMenus(String requestMenus) {
         return parseBySeperator(requestMenus, MENUS_SEPERATOR);
@@ -23,7 +25,7 @@ public class Parser {
             throw MenuException.occur();
         }
 
-        return new MenuAndAmount(menuAndAmount.get(0), menuAndAmount.get(1));
+        return new MenuAndAmount(menuAndAmount.get(MENU_INDEX), menuAndAmount.get(AMOUNT_INDEX));
     }
 
     private static boolean canNotSeprateMenuAndAmount(String requestMenu) {
