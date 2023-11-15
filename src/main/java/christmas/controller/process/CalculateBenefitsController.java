@@ -1,4 +1,4 @@
-package christmas.controller;
+package christmas.controller.process;
 
 import christmas.domain.Benefits;
 import christmas.domain.UserInformation;

@@ -1,4 +1,4 @@
-package christmas.view.output.constant;
+package christmas.view.display.constant;
 
 public enum ResultTitle {
     ORDER_MENU("주문 메뉴"),

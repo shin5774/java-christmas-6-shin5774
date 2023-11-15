@@ -1,4 +1,4 @@
-package christmas.view.output;
+package christmas.view.display;
 
 import static christmas.view.InformationMessage.PLANNER_START_MESSAGE;
 import static christmas.view.InformationMessage.RESULT_START_MESSAGE;

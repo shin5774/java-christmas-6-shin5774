@@ -2,7 +2,7 @@ package christmas.controller.display;
 
 import christmas.domain.Benefits;
 import christmas.domain.Orders;
-import christmas.view.output.AfterOrderPriceView;
+import christmas.view.display.AfterOrderPriceView;
 
 public class DisplayAfterOrderPriceController implements DisplayController {
     private final Orders orders;

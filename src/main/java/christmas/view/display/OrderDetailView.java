@@ -1,8 +1,8 @@
-package christmas.view.output;
+package christmas.view.display;
 
-import static christmas.view.output.constant.PrintFormat.ORDER_DETAILS_FORMAT;
+import static christmas.view.display.constant.PrintFormat.ORDER_DETAILS_FORMAT;
 
-import christmas.view.output.constant.ResultTitle;
+import christmas.view.display.constant.ResultTitle;
 import java.util.Map;
 
 public class OrderDetailView extends ResultView {

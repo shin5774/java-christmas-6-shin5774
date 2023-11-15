@@ -2,7 +2,7 @@ package christmas.controller.display;
 
 import christmas.domain.GiveawayEvent;
 import christmas.domain.Orders;
-import christmas.view.output.GiveawayMenuView;
+import christmas.view.display.GiveawayMenuView;
 
 public class DisplayGiveawayMenuController implements DisplayController {
     private final Orders orders;

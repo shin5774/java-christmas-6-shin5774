@@ -1,6 +1,6 @@
-package christmas.view.output;
+package christmas.view.display;
 
-import christmas.view.output.constant.ResultTitle;
+import christmas.view.display.constant.ResultTitle;
 
 public class BadgeView extends ResultView {
     private final String badgeTitle;

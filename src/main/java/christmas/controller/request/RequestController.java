@@ -1,6 +1,6 @@
 package christmas.controller.request;
 
-import christmas.view.output.OutputView;
+import christmas.view.display.OutputView;
 
 public abstract class RequestController<E> {
     private final OutputView outputView = new OutputView();

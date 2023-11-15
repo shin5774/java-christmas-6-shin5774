@@ -1,6 +1,6 @@
 package christmas;
 
-import christmas.view.output.OutputView;
+import christmas.view.display.OutputView;
 
 public class Application {
     public static void main(String[] args) {

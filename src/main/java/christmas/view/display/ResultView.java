@@ -1,4 +1,4 @@
-package christmas.view.output;
+package christmas.view.display;
 
 public abstract class ResultView {
     public void process() {

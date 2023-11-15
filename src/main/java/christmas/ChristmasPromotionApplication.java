@@ -1,20 +1,21 @@
 package christmas;
 
-import christmas.controller.CalculateBenefitsController;
 import christmas.controller.display.DisplayAfterOrderPriceController;
 import christmas.controller.display.DisplayBadgeController;
 import christmas.controller.display.DisplayBeforeOrderPriceController;
 import christmas.controller.display.DisplayBenefitDetailsController;
 import christmas.controller.display.DisplayGiveawayMenuController;
 import christmas.controller.display.DisplayTotalBenefitPriceController;
+import christmas.controller.process.CalculateBenefitsController;
+import christmas.controller.process.CreateUserInformationController;
 import christmas.controller.request.RequestOrdersController;
 import christmas.controller.request.RequestVisitedDateController;
 import christmas.domain.Benefits;
 import christmas.domain.Orders;
 import christmas.domain.UserInformation;
 import christmas.domain.VisitedDate;
-import christmas.view.output.OrderDetailView;
-import christmas.view.output.OutputView;
+import christmas.view.display.OrderDetailView;
+import christmas.view.display.OutputView;
 
 public class ChristmasPromotionApplication {
     private final OutputView outputView;
@@ -25,16 +26,34 @@ public class ChristmasPromotionApplication {
 
     public void start() {
         outputView.printPlannerStartMessage();
-        VisitedDate visitedDate = new RequestVisitedDateController().process();
-        Orders orders = new RequestOrdersController().process();
-        UserInformation userInformation = new UserInformation(visitedDate, orders);
+        VisitedDate visitedDate = requestVisitedDate();
+        Orders orders = requestOrders();
+        UserInformation userInformation = createUserInformation(visitedDate, orders);
 
         outputView.printResultStartMessage();
-        new OrderDetailView(userInformation.getOrderDetails()).process();
-
-        Benefits benefits = new CalculateBenefitsController(userInformation).proceed();
-
+        displayOrderDetails(userInformation);
+        Benefits benefits = calculateBenefits(userInformation);
         printResult(benefits, orders);
+    }
+
+    private VisitedDate requestVisitedDate() {
+        return new RequestVisitedDateController().process();
+    }
+
+    private Orders requestOrders() {
+        return new RequestOrdersController().process();
+    }
+
+    private UserInformation createUserInformation(VisitedDate visitedDate, Orders orders) {
+        return new CreateUserInformationController(visitedDate, orders).process();
+    }
+
+    private void displayOrderDetails(UserInformation userInformation) {
+        new OrderDetailView(userInformation.getOrderDetails()).process();
+    }
+
+    private Benefits calculateBenefits(UserInformation userInformation) {
+        return new CalculateBenefitsController(userInformation).proceed();
     }
 
     private void printResult(Benefits benefits, Orders orders) {

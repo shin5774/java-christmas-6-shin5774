@@ -1,8 +1,8 @@
-package christmas.view.output;
+package christmas.view.display;
 
-import static christmas.view.output.constant.PrintFormat.amountFormat;
+import static christmas.view.display.constant.PrintFormat.amountFormat;
 
-import christmas.view.output.constant.ResultTitle;
+import christmas.view.display.constant.ResultTitle;
 
 public class BeforeOrderPriceView extends ResultView {
     private final int amount;

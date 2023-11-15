@@ -1,9 +1,9 @@
-package christmas.view.output;
+package christmas.view.display;
 
-import static christmas.view.output.constant.PrintFormat.BENEFITS_DETAILS_FORMAT;
-import static christmas.view.output.constant.PrintFormat.amountFormat;
+import static christmas.view.display.constant.PrintFormat.BENEFITS_DETAILS_FORMAT;
+import static christmas.view.display.constant.PrintFormat.amountFormat;
 
-import christmas.view.output.constant.ResultTitle;
+import christmas.view.display.constant.ResultTitle;
 import java.util.Map;
 import java.util.Map.Entry;
 

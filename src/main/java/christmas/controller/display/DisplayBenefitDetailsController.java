@@ -1,7 +1,7 @@
 package christmas.controller.display;
 
 import christmas.domain.Benefits;
-import christmas.view.output.BenefitDetailsView;
+import christmas.view.display.BenefitDetailsView;
 
 public class DisplayBenefitDetailsController implements DisplayController {
     private final Benefits benefits;
