@@ -1,15 +1,15 @@
 package christmas.controller.request;
 
-import christmas.view.display.OutputView;
+import christmas.view.display.ErrorView;
 
 public abstract class RequestController<E> {
-    private final OutputView outputView = new OutputView();
+    private final ErrorView errorView = new ErrorView();
 
     public E process() {
         try {
             return active();
         } catch (IllegalArgumentException exception) {
-            outputView.printExceptionMessage(exception.getMessage());
+            errorView.printExceptionMessage(exception.getMessage());
             return process();
         }
     }

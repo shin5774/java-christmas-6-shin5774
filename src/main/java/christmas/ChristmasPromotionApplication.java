@@ -6,6 +6,7 @@ import christmas.controller.display.DisplayBeforeOrderPriceController;
 import christmas.controller.display.DisplayBenefitDetailsController;
 import christmas.controller.display.DisplayGiveawayMenuController;
 import christmas.controller.display.DisplayTotalBenefitPriceController;
+import christmas.controller.display.MessageController;
 import christmas.controller.process.CalculateBenefitsController;
 import christmas.controller.process.CreateUserInformationController;
 import christmas.controller.request.RequestOrdersController;
@@ -15,26 +16,26 @@ import christmas.domain.Orders;
 import christmas.domain.UserInformation;
 import christmas.domain.VisitedDate;
 import christmas.view.display.OrderDetailView;
-import christmas.view.display.OutputView;
 
 public class ChristmasPromotionApplication {
-    private final OutputView outputView;
+    private final MessageController messageController;
 
-    public ChristmasPromotionApplication(OutputView outputView) {
-        this.outputView = outputView;
+    public ChristmasPromotionApplication(MessageController messageController) {
+        this.messageController = messageController;
     }
 
     public void start() {
-        outputView.printPlannerStartMessage();
+        messageController.displayPlaanerStartMessage();
         VisitedDate visitedDate = requestVisitedDate();
         Orders orders = requestOrders();
         UserInformation userInformation = createUserInformation(visitedDate, orders);
 
-        outputView.printResultStartMessage();
+        messageController.displayResultStartMessage();
         displayOrderDetails(userInformation);
         Benefits benefits = calculateBenefits(userInformation);
         printResult(benefits, orders);
     }
+
 
     private VisitedDate requestVisitedDate() {
         return new RequestVisitedDateController().process();
@@ -47,7 +48,7 @@ public class ChristmasPromotionApplication {
     private UserInformation createUserInformation(VisitedDate visitedDate, Orders orders) {
         return new CreateUserInformationController(visitedDate, orders).process();
     }
-
+    
     private void displayOrderDetails(UserInformation userInformation) {
         new OrderDetailView(userInformation.getOrderDetails()).process();
     }

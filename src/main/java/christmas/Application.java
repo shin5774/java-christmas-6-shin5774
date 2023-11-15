@@ -1,11 +1,12 @@
 package christmas;
 
-import christmas.view.display.OutputView;
+import christmas.controller.display.MessageController;
+import christmas.view.display.MessageView;
 
 public class Application {
     public static void main(String[] args) {
         ChristmasPromotionApplication christmasPromotionApplication = new ChristmasPromotionApplication(
-                new OutputView());
+                new MessageController(new MessageView()));
         christmasPromotionApplication.start();
     }
 }
