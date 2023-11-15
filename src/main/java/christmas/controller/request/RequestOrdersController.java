@@ -3,10 +3,14 @@ package christmas.controller.request;
 import christmas.domain.Orders;
 import christmas.dto.OrdersDTO;
 import christmas.util.Mapper;
-import christmas.view.request.RequestOrdersView;
+import christmas.view.request.RequestView;
 
 public class RequestOrdersController extends RequestController<Orders> {
-    private RequestOrdersView requestView = new RequestOrdersView();
+    private final RequestView<OrdersDTO> requestView;
+
+    public RequestOrdersController(RequestView<OrdersDTO> requestView) {
+        this.requestView = requestView;
+    }
 
     @Override
     Orders request() {

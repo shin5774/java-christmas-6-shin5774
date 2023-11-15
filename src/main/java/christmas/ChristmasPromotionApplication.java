@@ -5,6 +5,7 @@ import christmas.controller.display.DisplayBadgeController;
 import christmas.controller.display.DisplayBeforeOrderPriceController;
 import christmas.controller.display.DisplayBenefitDetailsController;
 import christmas.controller.display.DisplayGiveawayMenuController;
+import christmas.controller.display.DisplayOrderDetailsController;
 import christmas.controller.display.DisplayTotalBenefitPriceController;
 import christmas.controller.display.MessageController;
 import christmas.controller.process.CalculateBenefitsController;
@@ -15,7 +16,8 @@ import christmas.domain.Benefits;
 import christmas.domain.Orders;
 import christmas.domain.UserInformation;
 import christmas.domain.VisitedDate;
-import christmas.view.display.OrderDetailView;
+import christmas.view.request.RequestOrdersView;
+import christmas.view.request.RequestVisitedDateView;
 
 public class ChristmasPromotionApplication {
     private final MessageController messageController;
@@ -28,21 +30,22 @@ public class ChristmasPromotionApplication {
         messageController.displayPlaanerStartMessage();
         VisitedDate visitedDate = requestVisitedDate();
         Orders orders = requestOrders();
+
         UserInformation userInformation = createUserInformation(visitedDate, orders);
+        Benefits benefits = calculateBenefits(userInformation);
 
         messageController.displayResultStartMessage();
         displayOrderDetails(userInformation);
-        Benefits benefits = calculateBenefits(userInformation);
-        printResult(benefits, orders);
+        displayResult(benefits, orders);
     }
 
 
     private VisitedDate requestVisitedDate() {
-        return new RequestVisitedDateController().proceed();
+        return new RequestVisitedDateController(new RequestVisitedDateView()).proceed();
     }
 
     private Orders requestOrders() {
-        return new RequestOrdersController().proceed();
+        return new RequestOrdersController(new RequestOrdersView()).proceed();
     }
 
     private UserInformation createUserInformation(VisitedDate visitedDate, Orders orders) {
@@ -50,14 +53,14 @@ public class ChristmasPromotionApplication {
     }
 
     private void displayOrderDetails(UserInformation userInformation) {
-        new OrderDetailView(userInformation.getOrderDetails()).proceed();
+        new DisplayOrderDetailsController(userInformation).proceed();
     }
 
     private Benefits calculateBenefits(UserInformation userInformation) {
         return new CalculateBenefitsController(userInformation).proceed();
     }
 
-    private void printResult(Benefits benefits, Orders orders) {
+    private void displayResult(Benefits benefits, Orders orders) {
         displayBeforeOrderPrice(orders);
         displayGiveawayMenu(orders);
         displayBenefitDetails(benefits);
