@@ -3,14 +3,14 @@ package christmas.controller.request;
 import christmas.domain.VisitedDate;
 import christmas.dto.VisitedDateDTO;
 import christmas.util.Mapper;
-import christmas.view.InputView;
+import christmas.view.request.RequestVisitedDateView;
 
 public class RequestVisitedDateController extends RequestController<VisitedDate> {
-    private InputView inputView = new InputView();
+    private RequestVisitedDateView requestView = new RequestVisitedDateView();
 
     @Override
     VisitedDate active() {
-        VisitedDateDTO visitedDateDTO = inputView.requestVisitedDate();
+        VisitedDateDTO visitedDateDTO = requestView.process();
         return Mapper.toVisitedDate(visitedDateDTO);
     }
 }

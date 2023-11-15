@@ -3,14 +3,14 @@ package christmas.controller.request;
 import christmas.domain.Orders;
 import christmas.dto.OrdersDTO;
 import christmas.util.Mapper;
-import christmas.view.InputView;
+import christmas.view.request.RequestOrdersView;
 
 public class RequestOrdersController extends RequestController<Orders> {
-    private InputView inputView = new InputView();
+    private RequestOrdersView requestView = new RequestOrdersView();
 
     @Override
     Orders active() {
-        OrdersDTO ordersDTO = inputView.requestOrders();
+        OrdersDTO ordersDTO = requestView.process();
         return Mapper.toOrders(ordersDTO);
     }
 }
