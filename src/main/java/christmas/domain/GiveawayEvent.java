@@ -9,14 +9,10 @@ import java.util.Map;
 public class GiveawayEvent {
     private static final int MINIMUM_GIVEAWAY_EVENT_AMOUNT = 120000;
 
-    public static boolean canApplyGiveawayEvent(int totalOrderAmount) {
-        return totalOrderAmount >= MINIMUM_GIVEAWAY_EVENT_AMOUNT;
-    }
-
-    public static Map<String, Integer> getGiveawayEventPriceResult(int totalOrderAmount) {
+    public static Map<String, Integer> getGiveawayEventPriceResult(int totalOrderPrice) {
         Map<String, Integer> giveawayResult = new HashMap<>();
 
-        if (canApplyGiveawayEvent(totalOrderAmount)) {
+        if (canApplyGiveawayEvent(totalOrderPrice)) {
             int totalEventPrice = -GIVEAWAY_EVENT_ITEMS.entrySet().stream()
                     .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
                     .sum();
@@ -27,13 +23,18 @@ public class GiveawayEvent {
         return giveawayResult;
     }
 
-    public static Map<String, Integer> getGiveawayEventMenuResult(int totalOrderAmount) {
+    public static Map<String, Integer> getGiveawayEventMenuResult(int totalOrderPrice) {
         Map<String, Integer> giveawayItem = new HashMap<>();
 
-        if (canApplyGiveawayEvent(totalOrderAmount)) {
+        if (canApplyGiveawayEvent(totalOrderPrice)) {
             GIVEAWAY_EVENT_ITEMS.forEach((key, value) -> giveawayItem.put(key.getName(), value));
         }
 
         return giveawayItem;
     }
+
+    private static boolean canApplyGiveawayEvent(int totalOrderPrice) {
+        return totalOrderPrice >= MINIMUM_GIVEAWAY_EVENT_AMOUNT;
+    }
+
 }
