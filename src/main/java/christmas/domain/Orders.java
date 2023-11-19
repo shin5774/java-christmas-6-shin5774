@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Orders {
     private static final int MINIMUM_PROMOTION_AMOUNT = 10000;
-    private static final int MINIMUN_AFTER_ORDER_PRICE = 0;
+    private static final int MINIMUM_AFTER_ORDER_PRICE = 0;
     private static final int NOT_APPLY_PROMOTION_PRICE = 0;
     private final Map<Menu, Integer> orders;
 
@@ -59,7 +59,7 @@ public class Orders {
             totalBenefitPrice += getExceptBenefitPrice();
         }
 
-        return Math.max(beforeOrderPrice + totalBenefitPrice, MINIMUN_AFTER_ORDER_PRICE);
+        return Math.max(beforeOrderPrice + totalBenefitPrice, MINIMUM_AFTER_ORDER_PRICE);
     }
 
     private int getExceptBenefitPrice() {

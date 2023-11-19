@@ -9,11 +9,11 @@ public enum Badge {
     NONE("없음", 0);
 
     private final String name;
-    private final int aquisitionCondition;
+    private final int acquisitionCondition;
 
-    Badge(String name, int aquisitionCondition) {
+    Badge(String name, int acquisitionCondition) {
         this.name = name;
-        this.aquisitionCondition = aquisitionCondition;
+        this.acquisitionCondition = acquisitionCondition;
     }
 
     public static Badge findBadge(int benefitAmount) {
@@ -24,7 +24,7 @@ public enum Badge {
     }
 
     private boolean canGetBadge(int benefitAmount) {
-        return benefitAmount >= aquisitionCondition;
+        return benefitAmount >= acquisitionCondition;
     }
 
     public String getName() {

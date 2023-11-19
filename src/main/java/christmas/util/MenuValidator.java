@@ -10,7 +10,7 @@ public class MenuValidator {
     public static void validate(MenuAndAmount menuAndAmount) {
         menuExistValidate(menuAndAmount.menu());
         amountNumberValidate(menuAndAmount.amount());
-        amountMinimunValidate(Integer.parseInt(menuAndAmount.amount()));
+        amountMinimumValidate(Integer.parseInt(menuAndAmount.amount()));
     }
 
     private static void menuExistValidate(String menu) {
@@ -25,7 +25,7 @@ public class MenuValidator {
         }
     }
 
-    private static void amountMinimunValidate(int amount) {
+    private static void amountMinimumValidate(int amount) {
         if (amount < MINIMUM_ORDER_AMOUNT) {
             throw MenuException.occur();
         }

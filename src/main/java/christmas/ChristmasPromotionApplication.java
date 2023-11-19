@@ -28,7 +28,7 @@ public class ChristmasPromotionApplication {
     }
 
     public void start() {
-        messageController.displayPlaanerStartMessage();
+        messageController.displayPlannerStartMessage();
         VisitedDate visitedDate = requestVisitedDate();
         Orders orders = requestOrders();
 

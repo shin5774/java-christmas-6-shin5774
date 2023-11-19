@@ -9,7 +9,7 @@ public class MessageController {
         this.messageView = messageView;
     }
 
-    public void displayPlaanerStartMessage() {
+    public void displayPlannerStartMessage() {
         messageView.printPlannerStartMessage();
     }
 

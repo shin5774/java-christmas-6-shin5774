@@ -5,22 +5,22 @@ import christmas.exception.MenuException;
 import java.util.List;
 
 public class Parser {
-    private static final String MENUS_SEPERATOR = ",";
-    private static final String MENU_AMOUNT_SEPERATOR = "-";
+    private static final String MENUS_SEPARATOR = ",";
+    private static final String MENU_AMOUNT_SEPARATOR = "-";
     private static final int MENU_AMOUNT_SET_SIZE = 2;
     private static final int MENU_INDEX = 0;
     private static final int AMOUNT_INDEX = 1;
 
     public static List<String> parseMenus(String requestMenus) {
-        return parseBySeperator(requestMenus, MENUS_SEPERATOR);
+        return parseBySeparator(requestMenus, MENUS_SEPARATOR);
     }
 
     public static MenuAndAmount parseMenuAndAmount(String requestMenu) {
-        if (canNotSeprateMenuAndAmount(requestMenu)) {
+        if (canNotSeparateMenuAndAmount(requestMenu)) {
             throw MenuException.occur();
         }
 
-        List<String> menuAndAmount = parseBySeperator(requestMenu, MENU_AMOUNT_SEPERATOR);
+        List<String> menuAndAmount = parseBySeparator(requestMenu, MENU_AMOUNT_SEPARATOR);
         if (menuAndAmount.size() < MENU_AMOUNT_SET_SIZE) {
             throw MenuException.occur();
         }
@@ -28,11 +28,11 @@ public class Parser {
         return new MenuAndAmount(menuAndAmount.get(MENU_INDEX), menuAndAmount.get(AMOUNT_INDEX));
     }
 
-    private static boolean canNotSeprateMenuAndAmount(String requestMenu) {
-        return !requestMenu.contains(MENU_AMOUNT_SEPERATOR);
+    private static boolean canNotSeparateMenuAndAmount(String requestMenu) {
+        return !requestMenu.contains(MENU_AMOUNT_SEPARATOR);
     }
 
-    private static List<String> parseBySeperator(String target, String seperator) {
+    private static List<String> parseBySeparator(String target, String seperator) {
         return List.of(target.split(seperator));
     }
 
