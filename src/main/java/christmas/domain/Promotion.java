@@ -2,7 +2,6 @@ package christmas.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
@@ -33,22 +32,22 @@ public enum Promotion {
                 .toList();
     }
 
-    public int getDiscountPrice(int day, Map<Menu, Integer> order) {
-        return discountAmount.apply(day) * getDiscountMenuAmount(order);
+    public int getDiscountPrice(int day, int discountMenuAmount) {
+        return discountAmount.apply(day) * getDiscountMenuAmount(discountMenuAmount);
     }
 
-    private int getDiscountMenuAmount(Map<Menu, Integer> order) {
+    private int getDiscountMenuAmount(int dicountMenuAmount) {
         if (discountMenuGroup == MenuGroup.NONE) {
             return MINIMAL_MENU_AMOUNT;
         }
-
-        return order.keySet().stream()
-                .filter(menu -> MenuGroup.findGroup(menu) == discountMenuGroup)
-                .mapToInt(order::get)
-                .sum();
+        return dicountMenuAmount;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public MenuGroup getDiscountMenuGroup() {
+        return discountMenuGroup;
     }
 }

@@ -23,7 +23,7 @@ public enum MenuGroup {
                 .orElse(NONE);
     }
 
-    private boolean isContain(Menu menu) {
+    public boolean isContain(Menu menu) {
         return menus.contains(menu);
     }
 }
