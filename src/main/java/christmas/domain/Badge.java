@@ -1,12 +1,12 @@
 package christmas.domain;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum Badge {
     SANTA("산타", 20000),
     TREE("트리", 10000),
-    STAR("별", 5000),
-    NONE("없음", 0);
+    STAR("별", 5000);
 
     private final String name;
     private final int acquisitionCondition;
@@ -16,11 +16,10 @@ public enum Badge {
         this.acquisitionCondition = acquisitionCondition;
     }
 
-    public static Badge findBadge(int benefitAmount) {
+    public static Optional<Badge> findBadge(int benefitAmount) {
         return Arrays.stream(Badge.values())
                 .filter(badge -> badge.canGetBadge(benefitAmount))
-                .findFirst()
-                .orElse(NONE);
+                .findFirst();
     }
 
     private boolean canGetBadge(int benefitAmount) {
