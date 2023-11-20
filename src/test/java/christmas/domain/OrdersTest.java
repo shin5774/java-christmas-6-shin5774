@@ -17,7 +17,6 @@ public class OrdersTest {
     static void 초기설정() {
         Map<Menu, Integer> order = new EnumMap<>(Menu.class);
         Arrays.stream(Menu.values())
-                .filter(menu -> !menu.equals(Menu.NONE))
                 .forEach(menu -> order.put(menu, 1));
         orders = Orders.from(order);
     }

@@ -37,7 +37,7 @@ public class Mapper {
 
         Map<Menu, Integer> inputOrders = new EnumMap<>(Menu.class);
         ordersDTO.requestOrders().forEach(
-                order -> inputOrders.put(Menu.findMenu(order.menu()), Integer.parseInt(order.amount())));
+                order -> inputOrders.put(Menu.findMenu(order.menu()).get(), Integer.parseInt(order.amount())));
 
         return Orders.from(inputOrders);
     }

@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum Menu {
     MUSHROOM_SOUP("양송이수프", 6_000),
@@ -14,8 +15,7 @@ public enum Menu {
     ICE_CREAM("아이스크림", 5_000),
     ZERO_COKE("제로콜라", 3_000),
     RED_WINE("레드와인", 60_000),
-    CHAMPAGNE("샴페인", 25_000),
-    NONE("없음", 0);
+    CHAMPAGNE("샴페인", 25_000);
 
 
     private final String name;
@@ -30,11 +30,10 @@ public enum Menu {
         return price;
     }
 
-    public static Menu findMenu(String target) {
+    public static Optional<Menu> findMenu(String target) {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.name.equals(target))
-                .findFirst()
-                .orElse(NONE);
+                .findFirst();
     }
 
     public String getName() {

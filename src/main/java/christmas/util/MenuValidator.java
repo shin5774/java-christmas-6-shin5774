@@ -14,9 +14,13 @@ public class MenuValidator {
     }
 
     private static void menuExistValidate(String menu) {
-        if (Menu.findMenu(menu) == Menu.NONE) {
+        if (isEmptyMenu(menu)) {
             throw MenuException.occur();
         }
+    }
+
+    private static boolean isEmptyMenu(String menu) {
+        return Menu.findMenu(menu).isEmpty();
     }
 
     private static void amountNumberValidate(String amount) {
