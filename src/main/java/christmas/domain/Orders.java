@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class Orders {
     private static final int MINIMUM_PROMOTION_AMOUNT = 10000;
-    private static final int MINIMUM_AFTER_ORDER_PRICE = 0;
     private static final int NOT_APPLY_PROMOTION_PRICE = 0;
+    private static final int NOT_ORDER_MENU_AMOUNT = 0;
     private final Map<Menu, Integer> orders;
 
     private Orders(Map<Menu, Integer> orders) {
@@ -45,35 +45,25 @@ public class Orders {
         applyPromotions.stream()
                 .map(promotion -> Map.entry(promotion.getTitle(),
                         promotion.getDiscountPrice(visitedDate.getDate(), orders)))
-                .filter(entry -> entry.getValue() != NOT_APPLY_PROMOTION_PRICE)
-                .forEach(entry -> inputBenefits.put(entry.getKey(), entry.getValue()));
+                .filter(benefit -> benefit.getValue() != NOT_APPLY_PROMOTION_PRICE)
+                .forEach(benefit -> inputBenefits.put(benefit.getKey(), benefit.getValue()));
 
         return Benefits.from(inputBenefits);
     }
 
-    public int getAfterOrderPrice(Benefits benefits) {
-        int beforeOrderPrice = getTotalOrderPrice();
-        int totalBenefitPrice = benefits.getTotalBenefitAmount();
-
-        if (benefits.hasGiveawayEvent()) {
-            totalBenefitPrice += getExceptBenefitPrice();
-        }
-
-        return Math.max(beforeOrderPrice + totalBenefitPrice, MINIMUM_AFTER_ORDER_PRICE);
+    //주문 목록중 증정 메뉴에 일부 포함되어 있는 메뉴들의 가격들의 총합
+    public int getSomeContainMenusPrice() {
+        return GIVEAWAY_EVENT_ITEMS.keySet().stream()
+                .filter(menu -> orders.getOrDefault(menu, NOT_ORDER_MENU_AMOUNT) >= GIVEAWAY_EVENT_ITEMS.get(menu))
+                .mapToInt(menu -> menu.getPrice() * (orders.get(menu) - GIVEAWAY_EVENT_ITEMS.get(menu)))
+                .sum();
     }
 
-    private int getExceptBenefitPrice() {
-        // 주문 목록중 증정 메뉴에 포함되지 않는 메뉴들의 가격들의 총합
-        int notContainMenusPrice = GIVEAWAY_EVENT_ITEMS.keySet().stream()
+    // 주문 목록중 증정 메뉴에 포함되지 않는 메뉴들의 가격들의 총합
+    public int getNotContainMenusPrice() {
+        return GIVEAWAY_EVENT_ITEMS.keySet().stream()
                 .filter(menu -> !orders.containsKey(menu))
                 .mapToInt(menu -> menu.getPrice() * GIVEAWAY_EVENT_ITEMS.get(menu))
                 .sum();
-        //주문 목록중 증정 메뉴에 일부 포함되어 있는 메뉴들의 가격들의 총합
-        int someContainMenusPrice = GIVEAWAY_EVENT_ITEMS.keySet().stream()
-                .filter(menu -> orders.getOrDefault(menu, 0) >= GIVEAWAY_EVENT_ITEMS.get(menu))
-                .mapToInt(menu -> menu.getPrice() * (orders.get(menu) - GIVEAWAY_EVENT_ITEMS.get(menu)))
-                .sum();
-
-        return notContainMenusPrice + someContainMenusPrice;
     }
 }
