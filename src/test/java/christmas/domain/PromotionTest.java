@@ -14,7 +14,8 @@ public class PromotionTest {
     @MethodSource("dayAndPromotions")
     @ParameterizedTest(name = "날짜 : {0}일, 프로모션 적용목록: {1}")
     void 프로모션_적용_목록확인(int day, List<Promotion> expected) {
-        List<Promotion> promotions = Promotion.findPromotions(day);
+        VisitedDate date = VisitedDate.from(day);
+        List<Promotion> promotions = Promotion.findPromotions(date);
         promotions.forEach(promotion -> assertThat(expected.contains(promotion)).isTrue());
     }
 

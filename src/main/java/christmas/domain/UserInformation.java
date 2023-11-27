@@ -33,7 +33,7 @@ public class UserInformation {
     }
 
     private void addBenefits(Map<String, Integer> benefits) {
-        List<Promotion> promotions = Promotion.findPromotions(visitedDate.getDate());
+        List<Promotion> promotions = Promotion.findPromotions(visitedDate);
 
         promotions.stream()
                 .map(promotion -> Map.entry(promotion.getTitle(),
