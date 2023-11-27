@@ -1,7 +1,13 @@
 package christmas;
 
+import christmas.controller.display.MessageController;
+import christmas.view.display.MessageView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        ChristmasPromotionApplication christmasPromotionApplication = new ChristmasPromotionApplication(
+                new MessageController(new MessageView()));
+        christmasPromotionApplication.start();
+        christmasPromotionApplication.close();
     }
 }
