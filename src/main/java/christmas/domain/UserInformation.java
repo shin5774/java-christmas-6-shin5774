@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -22,24 +24,29 @@ public class UserInformation {
     }
 
     public Benefits getBenefits() {
-        Map<String, Integer> benefits = GiveawayEvent.getGiveawayEventPriceResult(
-                orders.getTotalOrderPrice());
+        List<Benefit> benefits = new ArrayList<>();
+
+        benefits.add(GiveawayEvent.getGiveawayEventPriceResult(
+                orders.getTotalOrderPrice()));
 
         if (orders.canApplyPromotion()) {
-            addBenefits(benefits);
+            benefits.addAll(addBenefits());
         }
+
+        benefits.removeAll(Collections.singletonList(null));
 
         return Benefits.from(benefits);
     }
 
-    private void addBenefits(Map<String, Integer> benefits) {
+    private List<Benefit> addBenefits() {
         List<Promotion> promotions = Promotion.findPromotions(visitedDate);
 
-        promotions.stream()
+        return promotions.stream()
                 .map(promotion -> Map.entry(promotion.getTitle(),
                         promotion.getDiscountPrice(visitedDate.getDate(),
                                 orders.getMenuGroupAmount(promotion.getDiscountMenuGroup()))))
                 .filter(benefit -> benefit.getValue() != NOT_APPLY_PROMOTION_PRICE)
-                .forEach(benefit -> benefits.put(benefit.getKey(), benefit.getValue()));
+                .map(benefit -> new Benefit(benefit.getKey(), benefit.getValue()))
+                .toList();
     }
 }

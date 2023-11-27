@@ -2,30 +2,31 @@ package christmas.domain;
 
 import static christmas.domain.constant.Constant.GIVEAWAY_EVENT_TITLE;
 
-import java.util.Map;
+import java.util.List;
 
 public class Benefits {
-    private final Map<String, Integer> benefits;
+    private final List<Benefit> benefits;
 
-    private Benefits(Map<String, Integer> benefits) {
+    private Benefits(List<Benefit> benefits) {
         this.benefits = benefits;
     }
 
-    public static Benefits from(Map<String, Integer> benefits) {
+    public static Benefits from(List<Benefit> benefits) {
         return new Benefits(benefits);
     }
 
     public int getTotalBenefitAmount() {
-        return benefits.keySet().stream()
-                .mapToInt(benefits::get)
+        return benefits.stream()
+                .mapToInt(Benefit::getPrice)
                 .sum();
     }
 
-    public Map<String, Integer> getBenefitDetails() {
+    public List<Benefit> getBenefitDetails() {
         return benefits;
     }
 
     public boolean hasGiveawayEvent() {
-        return benefits.containsKey(GIVEAWAY_EVENT_TITLE);
+        return benefits.stream()
+                .anyMatch(benefit -> benefit.isEqualTitle(GIVEAWAY_EVENT_TITLE));
     }
 }

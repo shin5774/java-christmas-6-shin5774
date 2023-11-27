@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Orders {
-    private static final int MINIMUM_PROMOTION_AMOUNT = 10000;
+    private static final int MINIMUM_PROMOTION_AMOUNT = 10_000;
     private static final int NOT_ORDER_MENU_AMOUNT = 0;
     private final Map<Menu, Integer> orders;
 

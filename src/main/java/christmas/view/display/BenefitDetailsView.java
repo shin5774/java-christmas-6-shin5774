@@ -3,15 +3,15 @@ package christmas.view.display;
 import static christmas.view.display.constant.PrintFormat.BENEFITS_DETAILS_FORMAT;
 import static christmas.view.display.constant.PrintFormat.PRICE_FORMAT;
 
+import christmas.domain.Benefit;
 import christmas.view.display.constant.ResultTitle;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.List;
 
 public class BenefitDetailsView extends ResultView {
     private static final String NONE_EXIST = "없음";
-    private final Map<String, Integer> benefitDetails;
+    private final List<Benefit> benefitDetails;
 
-    public BenefitDetailsView(Map<String, Integer> benefitDetails) {
+    public BenefitDetailsView(List<Benefit> benefitDetails) {
         this.benefitDetails = benefitDetails;
     }
 
@@ -27,11 +27,11 @@ public class BenefitDetailsView extends ResultView {
             return;
         }
 
-        benefitDetails.entrySet().forEach(this::printBenefit);
+        benefitDetails.forEach(this::printBenefit);
     }
 
-    private void printBenefit(Entry<String, Integer> benefit) {
-        System.out.println(String.format(BENEFITS_DETAILS_FORMAT, benefit.getKey(),
-                PRICE_FORMAT.format(benefit.getValue())));
+    private void printBenefit(Benefit benefit) {
+        System.out.println(String.format(BENEFITS_DETAILS_FORMAT, benefit.getTitle(),
+                PRICE_FORMAT.format(benefit.getPrice())));
     }
 }
